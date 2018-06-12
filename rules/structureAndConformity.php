@@ -19,18 +19,6 @@ return [
         '3020' => '2300:3020',
     ],
 
-    'common' => [
-        'admin' => [
-            'css' => 'admin/view/stylesheet/',
-            'js' => 'admin/view/javascript/',
-        ],
-
-        'catalog' => [
-            'css' => 'catalog/view/stylesheet/',
-            'js' => 'catalog/view/theme/default/javascript/',
-        ]
-    ],
-
     '2010:2102' => [
         'admin' => [
             'controller' => 'admin/controller/module/',
@@ -38,6 +26,8 @@ return [
             'view' => 'admin/view/template/module/',
             'language_ru' => 'admin/language/russian/module/',
             'language_en' => 'admin/language/russian/module/',
+            'css' => 'admin/view/stylesheet/',
+            'js' => 'admin/view/javascript/',
         ],
 
         'catalog' => [
@@ -46,6 +36,8 @@ return [
             'view' => 'catalog/view/theme/default/template/module/',
             'language_ru' => 'admin/language/russian/module/',
             'language_en' => 'admin/language/russian/module/',
+            'css' => 'catalog/view/stylesheet/',
+            'js' => 'catalog/view/theme/default/javascript/',
         ]
     ],
 
@@ -56,6 +48,8 @@ return [
             'view' => 'admin/view/template/module/',
             'language_ru' => 'admin/language/ru-ru/module/',
             'language_en' => 'admin/language/en-gb/module/',
+            'css' => 'admin/view/stylesheet/',
+            'js' => 'admin/view/javascript/',
         ],
 
         'catalog' => [
@@ -64,6 +58,8 @@ return [
             'view' => 'catalog/view/theme/default/template/module/',
             'language_ru' => 'admin/language/ru-ru/module/',
             'language_en' => 'admin/language/en-gb/module/',
+            'css' => 'catalog/view/stylesheet/',
+            'js' => 'catalog/view/theme/default/javascript/',
         ]
     ],
 
@@ -74,6 +70,8 @@ return [
             'view' => 'admin/view/template/extension/module/',
             'language_ru' => 'admin/language/ru-ru/module/',
             'language_en' => 'admin/language/en-gb/module/',
+            'css' => 'admin/view/stylesheet/',
+            'js' => 'admin/view/javascript/',
         ],
 
         'catalog' => [
@@ -82,6 +80,8 @@ return [
             'view' => 'catalog/view/theme/default/template/extension/module/',
             'language_ru' => 'admin/language/ru-ru/module/',
             'language_en' => 'admin/language/en-gb/module/',
+            'css' => 'catalog/view/stylesheet/',
+            'js' => 'catalog/view/theme/default/javascript/',
         ]
     ]
 ];

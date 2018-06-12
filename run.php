@@ -1,4 +1,5 @@
 <?php
+
 use Controller\Helper\FileSystem;
 
 //DISTRIBUTE TO ALL VERSIONS
@@ -7,18 +8,19 @@ $structureAndConformity = require_once __DIR__ . '/rules/structureAndConformity.
 $filesToDistribute = require_once __DIR__ . '/filesToDistribute.php';
 
 foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
-    foreach ($adminCatalogDirs as $mvcDirName => $fileName) {
+    foreach ($adminCatalogDirs as $mvcDirName => $files) {
+        foreach ($files as $file) {
+            foreach ($config['integration_versions'] as $integrationVersion) {
 
-        foreach ($config['integration_versions'] as $integrationVersion) {
+                $structureDirFileToCopy = $structureAndConformity[$structureAndConformity['conformity'][$config['distribution_version']]][$adminCatalogDirName][$mvcDirName];
+                $fileToCopy = FileSystem::parentDir() . $config['distribution_version'] . '/' . $structureDirFileToCopy . $file;
 
-            $structureDirFileToCopy = $structureAndConformity[$structureAndConformity['conformity'][$config['distribution_version']]][$adminCatalogDirName][$mvcDirName];
-            $fileToCopy = FileSystem::parentDir() . $config['distribution_version'] . '/' . $structureDirFileToCopy . $fileName;
+                $structureDirNewFile = $structureAndConformity[$structureAndConformity['conformity'][$integrationVersion]][$adminCatalogDirName][$mvcDirName];
+                $newFile = FileSystem::parentDir() . $integrationVersion . '/' . $structureDirNewFile . $file;
+                FileSystem::createDirByFile($newFile);
 
-            $structureDirNewFile = $structureAndConformity[$structureAndConformity['conformity'][$integrationVersion]][$adminCatalogDirName][$mvcDirName];
-            $newFile = FileSystem::parentDir() . $integrationVersion . '/' . $structureDirNewFile . $fileName;
-            FileSystem::createDirByFile($newFile);
-
-            FileSystem::copyFile($fileToCopy, $newFile);
+                FileSystem::copyFile($fileToCopy, $newFile);
+            }
         }
     }
 }
