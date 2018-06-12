@@ -1,5 +1,7 @@
 {
-    "autoload": {
-        "psr-4": {"Rules\\": "rules/"}
+  "autoload": {
+    "psr-4": {
+      "Controller\\": "controller/"
     }
+  }
 }
