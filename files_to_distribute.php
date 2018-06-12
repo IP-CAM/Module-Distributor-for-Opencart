@@ -6,6 +6,12 @@ return [
         ],
         'view' => [
             'same_category_products.tpl',
+        ],
+        'css' => [
+            'same_category_products.css'
+        ],
+        'js' => [
+            'same_category_products.js'
         ]
     ],
 
@@ -18,6 +24,12 @@ return [
         ],
         'view' => [
             'same_category_products.tpl',
+        ],
+        'css' => [
+            'same_category_products.css'
+        ],
+        'js' => [
+            'same_category_products.js'
         ]
     ]
 ];

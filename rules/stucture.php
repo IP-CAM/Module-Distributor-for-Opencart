@@ -1,5 +1,17 @@
 <?php
 return [
+    'common' => [
+        'admin' => [
+            'css' => 'admin/view/stylesheet/',
+            'js' => 'admin/view/javascript/',
+        ],
+
+        'catalog' => [
+            'css' => 'catalog/view/stylesheet/',
+            'js' => 'catalog/view/theme/default/javascript/',
+        ]
+    ],
+
     '2010:2102' => [
         'admin' => [
             'controller' => 'admin/controller/module/',
