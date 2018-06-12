@@ -6,7 +6,7 @@ Class FileSystem
     public static function createDir($dir)
     {
         if (!is_dir($dir)) {
-            $output = shell_exec('mkdir -p ' . $dir);
+            $output = CLI::input('mkdir -p ' . $dir);
             return !$output;
         } else {
             return true;

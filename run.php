@@ -1,6 +1,7 @@
 <?php
 
 use Controller\Helper\FileSystem;
+use Controller\Helper\CLI;
 
 //DISTRIBUTE TO ALL VERSIONS
 $config = require_once __DIR__ . '/config.php';
@@ -11,7 +12,6 @@ foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
     foreach ($adminCatalogDirs as $mvcDirName => $files) {
         foreach ($files as $file) {
             foreach ($config['integration_versions'] as $integrationVersion) {
-
                 $structureDirFileToCopy = $structureAndConformity[$structureAndConformity['conformity'][$config['distribution_version']]][$adminCatalogDirName][$mvcDirName];
                 $fileToCopy = FileSystem::parentDir() . $config['distribution_version'] . '/' . $structureDirFileToCopy . $file;
 
@@ -20,6 +20,8 @@ foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
                 FileSystem::createDirByFile($newFile);
 
                 FileSystem::copyFile($fileToCopy, $newFile);
+
+                CLI::output("({$integrationVersion}) $adminCatalogDirName $mvcDirName $file created!");
             }
         }
     }
