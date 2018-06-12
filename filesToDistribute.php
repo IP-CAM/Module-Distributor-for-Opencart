@@ -12,7 +12,13 @@ return [
         ],
         'js' => [
             'same_category_products.js'
-        ]
+        ],
+        'language_ru' => [
+            'same_category_products.php',
+        ],
+        'language_en' => [
+            'same_category_products.php',
+        ],
     ],
 
     'catalog' => [
@@ -30,6 +36,12 @@ return [
         ],
         'js' => [
             'same_category_products.js'
-        ]
+        ],
+        'language_ru' => [
+            'same_category_products.php',
+        ],
+        'language_en' => [
+            'same_category_products.php',
+        ],
     ]
 ];

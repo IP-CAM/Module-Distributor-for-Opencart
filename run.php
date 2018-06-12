@@ -4,7 +4,7 @@ use Controller\Helper\FileSystem;
 //DISTRIBUTE TO ALL VERSIONS
 $config = require_once __DIR__ . '/config.php';
 $structureAndConformity = require_once __DIR__ . '/rules/structureAndConformity.php';
-$filesToDistribute = require_once __DIR__ . '/files_to_distribute.php';
+$filesToDistribute = require_once __DIR__ . '/filesToDistribute.php';
 
 foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
     foreach ($adminCatalogDirs as $mvcDirName => $fileName) {
