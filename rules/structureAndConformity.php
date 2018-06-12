@@ -1,17 +1,5 @@
 <?php
 return [
-    'common' => [
-        'admin' => [
-            'css' => 'admin/view/stylesheet/',
-            'js' => 'admin/view/javascript/',
-        ],
-
-        'catalog' => [
-            'css' => 'catalog/view/stylesheet/',
-            'js' => 'catalog/view/theme/default/javascript/',
-        ]
-    ],
-
     'conformity' => [
         '2010' => '2010:2102',
         '2011' => '2010:2102',
@@ -29,6 +17,18 @@ return [
         '3011' => '2300:3020',
         '3012' => '2300:3020',
         '3020' => '2300:3020',
+    ],
+
+    'common' => [
+        'admin' => [
+            'css' => 'admin/view/stylesheet/',
+            'js' => 'admin/view/javascript/',
+        ],
+
+        'catalog' => [
+            'css' => 'catalog/view/stylesheet/',
+            'js' => 'catalog/view/theme/default/javascript/',
+        ]
     ],
 
     '2010:2102' => [
