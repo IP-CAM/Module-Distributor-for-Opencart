@@ -1,5 +1,5 @@
 <?php
-namespace Controller\Helper;
+namespace App\Helper;
 
 Class FileSystem
 {

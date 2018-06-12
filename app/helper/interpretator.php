@@ -1,5 +1,7 @@
 <?php
-namespace Controller\Helper;
+namespace App\Helper;
+
+use App\System\Config;
 
 Class Helper
 {
@@ -9,8 +11,7 @@ Class Helper
      */
     public static function rangeToArray($range) {
         if ($range == 'all') {
-            $config = require __DIR__ . '/../../config.php';
-            return $config['integration_versions'];
+            return Config::get('app', 'integration_versions');
         }
     }
 }
