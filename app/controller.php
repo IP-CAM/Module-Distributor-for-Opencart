@@ -25,7 +25,7 @@ Class Controller
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDirName,$file);
                         $newFile = self::copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
-                        self::integrate($integrationVersion, $adminCatalogDirName, $newFile);
+//                        self::integrate($integrationVersion, $adminCatalogDirName, $newFile);
                     }
                 }
             }

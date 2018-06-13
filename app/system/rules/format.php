@@ -25,6 +25,6 @@ Class Format
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/format.php';
+        return require __DIR__ . '/../../../rules/format.php';
     }
 }

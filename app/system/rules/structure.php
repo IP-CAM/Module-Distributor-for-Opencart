@@ -29,6 +29,6 @@ Class Structure
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/structure.php';
+        return require __DIR__ . '/../../../rules/structure.php';
     }
 }

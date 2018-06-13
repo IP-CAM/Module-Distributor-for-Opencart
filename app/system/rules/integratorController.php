@@ -28,6 +28,6 @@ Class IntegratorController extends Integrator
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/controller.php';
+        return require __DIR__ . '/../../../rules/controller.php';
     }
 }

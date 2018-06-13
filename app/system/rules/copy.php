@@ -11,7 +11,7 @@ Class Copy
 
         foreach ($rules[$mvcDir] as $distributeVersion => $conformity) {
             if (in_array($integrationVersion, Interpretation::rangeToArray($conformity))) {
-                return $distributeVersion;
+                return (string)$distributeVersion;
             }
         }
 
@@ -21,6 +21,6 @@ Class Copy
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/copy.php';
+        return require __DIR__ . '/../../../rules/copy.php';
     }
 }

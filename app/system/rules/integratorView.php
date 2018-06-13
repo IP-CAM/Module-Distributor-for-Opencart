@@ -26,6 +26,6 @@ Class IntegratorView extends Integrator
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/view.php';
+        return require __DIR__ . '/../../../rules/view.php';
     }
 }

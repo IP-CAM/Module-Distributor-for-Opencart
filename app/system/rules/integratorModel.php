@@ -26,6 +26,6 @@ Class IntegratorModel extends Integrator
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/model.php';
+        return require __DIR__ . '/../../../rules/model.php';
     }
 }
