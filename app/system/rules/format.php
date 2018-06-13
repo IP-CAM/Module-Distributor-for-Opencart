@@ -13,7 +13,8 @@ Class Format
             $rules = self::getRules();
 
             foreach ($rules[$mvcDir] as $versions => $format) {
-                if (in_array($integrationVersion, Interpretation::rangeToArray($versions))) {
+                $arr = Interpretation::rangeToArray($versions);
+                if (in_array($integrationVersion, $arr)) {
                     $file .= $format;
                     break;
                 }

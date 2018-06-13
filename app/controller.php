@@ -23,8 +23,14 @@ Class Controller
             foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDirName => $files) {
                     foreach ($files as $file) {
+
+                        $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDirName);
+                        if ($integrationVersion == $distributionVersion) {
+                            continue;
+                        }
+
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDirName,$file);
-                        $newFile = self::copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
+                        $newFile = self::copyFile($distributionVersion, $integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
 //                        self::integrate($integrationVersion, $adminCatalogDirName, $newFile);
                     }
                 }
@@ -32,11 +38,9 @@ Class Controller
         }
     }
 
-    private static function copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file)
+    private static function copyFile($distributionVersion, $integrationVersion, $adminCatalogDirName, $mvcDirName, $file)
     {
         $structureRules = Structure::getRules();
-
-        $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDirName);
 
         $structureDirFileToCopy = $structureRules[Structure::conformity($distributionVersion)][$adminCatalogDirName][$mvcDirName];
         $fileToCopy = FileSystem::parentDir(2) . $distributionVersion . '/' . $structureDirFileToCopy . $file;
