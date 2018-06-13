@@ -27,8 +27,8 @@ Class FileSystem
         }
     }
 
-    public static function parentDir()
+    public static function parentDir($level = 1)
     {
-        return '../';
+        return str_repeat('../', $level);
     }
 }

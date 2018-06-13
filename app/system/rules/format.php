@@ -3,9 +3,9 @@ namespace App\System\Rules;
 
 use App\Helper\Interpretation;
 
-Class Copy
+Class Format
 {
-    public static function getDistributeVersion($integrationVersion, $mvcDir)
+    public static function getFormat($integrationVersion, $mvcDir)
     {
         $rules = self::getRules();
 
@@ -21,6 +21,6 @@ Class Copy
 
     public static function getRules()
     {
-        return require_once __DIR__ . '/../../../rules/copy.php';
+        return require_once __DIR__ . '/../../../rules/format.php';
     }
 }

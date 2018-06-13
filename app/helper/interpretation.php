@@ -3,7 +3,7 @@ namespace App\Helper;
 
 use App\System\Config;
 
-Class Helper
+Class Interpretation
 {
     /**
      * @param string $range - is format 'xxxx:xxxx' or 'all'
@@ -13,5 +13,12 @@ Class Helper
         if ($range == 'all') {
             return Config::get('app', 'integration_versions');
         }
+
+        $rangeToArray = explode(':', $range);
+        if (count($rangeToArray) > 1) {
+            $rangeToArray = range($rangeToArray[0], $rangeToArray[1]);
+        }
+
+        return $rangeToArray;
     }
 }
