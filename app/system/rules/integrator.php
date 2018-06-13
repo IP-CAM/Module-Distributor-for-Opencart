@@ -9,8 +9,10 @@ Class Integrator
     {
         $rules = static::getRules();
 
-        foreach ($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDirName] as $rule) {
-            str_replace($rule[0], $rule[1], $file);
+        if (!empty($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDirName])) {
+            foreach ($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDirName] as $rule) {
+                str_replace($rule[0], $rule[1], $file);
+            }
         }
     }
 

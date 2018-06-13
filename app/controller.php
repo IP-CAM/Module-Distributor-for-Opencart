@@ -9,6 +9,7 @@ use App\System\Rules\Format;
 use App\System\Rules\Controller as ControllerIntegrator;
 use App\System\Rules\Model as ModelIntegrator;
 use App\System\Rules\View as ViewIntegrator;
+
 use App\Helper\FileSystem;
 use App\Helper\CLI;
 
@@ -56,5 +57,7 @@ Class Controller
         ControllerIntegrator::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
         ModelIntegrator::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
         ViewIntegrator::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
+
+        CLI::output("({$integrationVersion}) $newFile integrated!");
     }
 }
