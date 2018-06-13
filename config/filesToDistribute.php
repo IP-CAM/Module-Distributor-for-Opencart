@@ -1,11 +1,16 @@
 <?php
+
+/**
+ * If format do not specify, its will create automate
+ */
+
 return [
     'admin' => [
         'controller' => [
             'same_category_products.php',
         ],
         'view' => [
-            'same_category_products.tpl',
+            'same_category_products',
         ],
         'css' => [
             'same_category_products.css'
@@ -29,7 +34,7 @@ return [
             'same_category_products.php',
         ],
         'view' => [
-            'same_category_products.tpl',
+            'same_category_products',
         ],
         'css' => [
             'same_category_products.css'

@@ -5,6 +5,8 @@ namespace App;
 use App\System\Config;
 use App\System\Rules\Structure;
 use App\System\Rules\Copy;
+use App\System\Rules\Format;
+use App\System\Rules\Controller as ControllerRules;
 use App\Helper\FileSystem;
 use App\Helper\CLI;
 
@@ -18,6 +20,7 @@ Class Controller
             foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDirName => $files) {
                     foreach ($files as $file) {
+                        Format::addFormatToFileIfNotExists($integrationVersion, $mvcDirName,$file);
                         self::copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
                     }
                 }
@@ -45,6 +48,6 @@ Class Controller
 
     private static function integrate($integrationVersion, $adminCatalogDirName, $mvcDirName, $file)
     {
-
+        ControllerRules::getRules();
     }
 }
