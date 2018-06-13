@@ -19,6 +19,10 @@ Class Interpretation
             $rangeToArray = range($rangeToArray[0], $rangeToArray[1]);
         }
 
+        foreach ($rangeToArray as &$item) {
+            $item = (string)$item;
+        }
+
         return $rangeToArray;
     }
 }
