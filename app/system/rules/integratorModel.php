@@ -1,7 +1,7 @@
 <?php
 namespace App\System\Rules;
 
-Class Model extends Integrator
+Class IntegratorModel extends Integrator
 {
     public static function conformity()
     {
