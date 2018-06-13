@@ -8,8 +8,5 @@
 return [
     '2010:2302' => [],
 
-    '3000:3020' => [
-        'ModelModule{class_name}',
-        'ModelExtensionModule{class_name}'
-    ]
+    '3000:3020' => []
 ];

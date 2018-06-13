@@ -1,7 +1,9 @@
 <?php
 namespace App\System\Rules;
 
-Class Controller
+use App\System\Config;
+
+Class Controller extends Integrator
 {
     public static function conformity()
     {

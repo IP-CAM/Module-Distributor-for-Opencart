@@ -21,7 +21,8 @@ Class Controller
                 foreach ($adminCatalogDirs as $mvcDirName => $files) {
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDirName,$file);
-                        self::copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
+                        $newFile = self::copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
+                        self::integrate($integrationVersion, $adminCatalogDirName, $newFile);
                     }
                 }
             }
@@ -44,10 +45,12 @@ Class Controller
         FileSystem::copyFile($fileToCopy, $newFile);
 
         CLI::output("({$integrationVersion}) $adminCatalogDirName $mvcDirName $file created!");
+
+        return $newFile;
     }
 
-    private static function integrate($integrationVersion, $adminCatalogDirName, $mvcDirName, $file)
+    private static function integrate($integrationVersion, $adminCatalogDirName, $newFile)
     {
-        ControllerRules::getRules();
+        ControllerRules::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
     }
 }

@@ -9,7 +9,14 @@ return [
     '2010:2200' => [],
 
     '2300:3020' => [
-        'ModelModule{class_name}',
-        'ModelExtensionModule{class_name}'
+        'admin' => [
+            'ModelModule{class_name}',
+            'ModelExtensionModule{class_name}'
+        ],
+
+        'catalog' => [
+            'ModelModule{class_name}',
+            'ModelExtensionModule{class_name}'
+        ]
     ]
 ];
