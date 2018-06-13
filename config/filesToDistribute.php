@@ -1,7 +1,7 @@
 <?php
 
 /**
- * If format do not specify, its will create automate
+ * If format do not specify, its will create automate from format rules
  */
 
 return [
