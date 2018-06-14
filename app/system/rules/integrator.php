@@ -1,9 +1,26 @@
 <?php
 namespace App\System\Rules;
 
+use App\Helper\Interpretation;
+
 Class Integrator
 {
-    public static function conformity(){return [];}
+    protected static $storageConformity = null;
+
+    public static function conformity() {
+        if (static::$storageConformity == null) {
+            $rules = static::getRules();
+
+            foreach ($rules as $keyRules => $rule) {
+                $arrayKeyRules = Interpretation::rangeToArray($keyRules);
+
+                foreach ($arrayKeyRules as $arrayKeyRule) {
+                    static::$storageConformity[$arrayKeyRule] = $keyRules;
+                }
+            }
+        }
+        return static::$storageConformity;
+    }
 
     public static function integrateToVersion($integrationVersion, $adminCatalogDirName, $file)
     {
