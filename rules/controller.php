@@ -11,10 +11,6 @@ return [
     '2200' => [
         'admin' => [
             [
-                '\'SSL\'',
-                'true'
-            ],
-            [
                 '$this->load->view(\'module/{module_name}.tpl\', $data)',
                 '$this->load->view(\'module/{module_name}\', $data)'
             ],
@@ -145,10 +141,6 @@ return [
             [
                 '\'module/{module_name}\'',
                 '\'extension/module/{module_name}\''
-            ],
-            [
-                '$this->language->get(\'text_module\'),',
-                '$this->language->get(\'text_extension\'),'
             ],
             [
                 'link(\'extension/module\'',
