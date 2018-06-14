@@ -71,16 +71,12 @@ return [
                 '\'extension/module/{module_name}\''
             ],
             [
-                '\'SSL\'',
-                'true'
-            ],
-            [
                 '$this->language->get(\'text_module\'),',
                 '$this->language->get(\'text_extension\'),'
             ],
             [
-                '\'extension/module\'',
-                '\'extension/extension\''
+                'link(\'extension/module\'',
+                'link(\'extension/extension\''
             ],
             [
                 '$this->load->view(\'module/{module_name}.tpl\', $data)',
@@ -151,16 +147,12 @@ return [
                 '\'extension/module/{module_name}\''
             ],
             [
-                '\'SSL\'',
-                'true'
-            ],
-            [
                 '$this->language->get(\'text_module\'),',
                 '$this->language->get(\'text_extension\'),'
             ],
             [
-                '\'extension/module\'',
-                '\'extension/extension\''
+                'link(\'extension/module\'',
+                'link(\'marketplace/extension\''
             ],
             [
                 '$this->load->view(\'module/{module_name}.tpl\', $data)',
