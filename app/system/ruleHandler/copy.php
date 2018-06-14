@@ -1,5 +1,5 @@
 <?php
-namespace App\System\Rules;
+namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
 

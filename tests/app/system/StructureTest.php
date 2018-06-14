@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use App\System\Rules\Structure;
+use App\System\RuleHandler\Structure;
 
 class StructureTest extends TestCase
 {

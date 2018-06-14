@@ -1,8 +1,10 @@
 <?php
-namespace App\System\Rules;
+namespace App\System\RuleHandler;
 
 Class Structure extends Integrator
 {
+    protected static $storageConformity = null;
+
     public static function getPath($version, $catalogAdminDir, $mvcDir)
     {
         $rules = static::getRules();

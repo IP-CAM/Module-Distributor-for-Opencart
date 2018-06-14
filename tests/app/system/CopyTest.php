@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use App\System\Rules\Copy;
+use App\System\RuleHandler\Copy;
 
 class CopyTest extends TestCase
 {

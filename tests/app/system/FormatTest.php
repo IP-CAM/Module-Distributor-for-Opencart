@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use App\System\Rules\Format;
+use App\System\RuleHandler\Format;
 
 class FormatTest extends TestCase
 {

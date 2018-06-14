@@ -3,12 +3,13 @@
 namespace App;
 
 use App\System\Config;
-use App\System\Rules\Structure;
-use App\System\Rules\Copy;
-use App\System\Rules\Format;
-use App\System\Rules\IntegratorController;
-use App\System\Rules\IntegratorModel;
-use App\System\Rules\IntegratorView;
+use App\System\RuleHandler\Integrator;
+use App\System\RuleHandler\Structure;
+use App\System\RuleHandler\Copy;
+use App\System\RuleHandler\Format;
+use App\System\RuleHandler\IntegratorController;
+use App\System\RuleHandler\IntegratorModel;
+use App\System\RuleHandler\IntegratorView;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -25,7 +26,7 @@ Class Controller
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
                         $newFile = self::copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file);
-                        self::integrate($integrationVersion, $adminCatalogDir, $newFile);
+                        self::integrate($integrationVersion, $adminCatalogDir, $mvcDir, $newFile);
                     }
                 }
             }
@@ -50,11 +51,15 @@ Class Controller
         return $newFile;
     }
 
-    private static function integrate($integrationVersion, $adminCatalogDir, $newFile)
+    private static function integrate($integrationVersion, $adminCatalogDir, $mvcDir, $newFile)
     {
-        IntegratorController::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
-        IntegratorModel::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
-        IntegratorView::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
+        /**
+         * @var Integrator $className
+         */
+        $className = 'App\System\RuleHandler\Integrator' . ucfirst($mvcDir);
+        if (class_exists($className)) {
+            $className::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
+        }
 
         CLI::output("({$integrationVersion}) " . pathinfo($newFile, PATHINFO_FILENAME) . " integrated!");
     }

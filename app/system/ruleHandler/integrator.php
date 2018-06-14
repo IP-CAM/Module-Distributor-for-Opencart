@@ -1,8 +1,9 @@
 <?php
-namespace App\System\Rules;
+namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
 use App\Helper\Replacer;
+use App\System\Config;
 
 Class Integrator
 {
@@ -23,20 +24,18 @@ Class Integrator
         return static::$storageConformity;
     }
 
-    public static function integrateToVersion($integrationVersion, $adminCatalogDirName, $file)
+    public static function integrateToVersion($integrationVersion, $adminCatalogDir, $file)
     {
         $rules = static::getRules();
 
-        if (!empty($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDirName])) {
-            foreach ($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDirName] as $rule) {
+        if (!empty($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDir])) {
+            foreach ($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDir] as $rule) {
                 Replacer::replaceInFile($rule[0], $rule[1], $file);
             }
         }
     }
 
-    /**
-     * @return array
-     */
+
     public static function getRules(){return [];}
 
     /**
