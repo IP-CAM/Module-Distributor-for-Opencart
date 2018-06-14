@@ -25,7 +25,7 @@ Class Controller
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
                         $newFile = self::copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file);
-//                        self::integrate($integrationVersion, $adminCatalogDirName, $newFile);
+                        self::integrate($integrationVersion, $adminCatalogDir, $newFile);
                     }
                 }
             }
@@ -50,12 +50,12 @@ Class Controller
         return $newFile;
     }
 
-    private static function integrate($integrationVersion, $adminCatalogDirName, $newFile)
+    private static function integrate($integrationVersion, $adminCatalogDir, $newFile)
     {
-        IntegratorController::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
-        IntegratorModel::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
-        IntegratorView::integrateToVersion($integrationVersion, $adminCatalogDirName, $newFile);
+        IntegratorController::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
+        IntegratorModel::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
+        IntegratorView::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
 
-        CLI::output("({$integrationVersion}) $newFile integrated!");
+        CLI::output("({$integrationVersion}) " . pathinfo($newFile, PATHINFO_FILENAME) . " integrated!");
     }
 }
