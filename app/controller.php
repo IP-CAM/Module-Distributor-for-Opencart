@@ -7,9 +7,6 @@ use App\System\RuleHandler\Integrator;
 use App\System\RuleHandler\Structure;
 use App\System\RuleHandler\Copy;
 use App\System\RuleHandler\Format;
-use App\System\RuleHandler\IntegratorController;
-use App\System\RuleHandler\IntegratorModel;
-use App\System\RuleHandler\IntegratorView;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -20,8 +17,23 @@ Class Controller
         $configApp = Config::app();
         $filesToDistribute = Config::filesToDistribute();
 
+        //Distribute modules to other project versions
         foreach ($configApp['integration_versions'] as $integrationVersion) {
-            foreach ($filesToDistribute as $adminCatalogDir => $adminCatalogDirs) {
+            foreach ($filesToDistribute['module'] as $adminCatalogDir => $adminCatalogDirs) {
+                foreach ($adminCatalogDirs as $mvcDir => $files) {
+                    foreach ($files as $file) {
+                        Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
+                        $newFile = self::copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file);
+                        self::integrate($integrationVersion, $adminCatalogDir, $mvcDir, $newFile);
+                    }
+                }
+            }
+        }
+
+
+        //Distribute oc_modification to other project versions
+        foreach ($configApp['integration_versions'] as $integrationVersion) {
+            foreach ($filesToDistribute['oc_modification'] as $adminCatalogDir => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
