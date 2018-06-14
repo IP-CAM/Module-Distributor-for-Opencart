@@ -23,11 +23,7 @@ Class Controller
             foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDirName => $files) {
                     foreach ($files as $file) {
-
                         $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDirName);
-                        if ($integrationVersion == $distributionVersion) {
-                            continue;
-                        }
 
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDirName,$file);
                         $newFile = self::copyFile($distributionVersion, $integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
