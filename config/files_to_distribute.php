@@ -53,9 +53,21 @@ return [
     ],
 
     'oc_modification' => [
-        [
-            '2010' => '2010:2200', //From distributor to integration
-            'admin/controller/catalog/category.php'
-        ]
+        '2010:2200' => [
+            [
+                //Distribute version
+                '2010',
+
+                //File from -> to string or array ['from' => 'to']
+                'admin/controller/catalog/category.php',
+
+                //Replace rules [['search', 'replace']]
+                [
+                    [
+                        'model', 'database'
+                    ]
+                ]
+            ]
+        ],
     ],
 ];

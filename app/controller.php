@@ -7,6 +7,7 @@ use App\System\RuleHandler\Integrator;
 use App\System\RuleHandler\Structure;
 use App\System\RuleHandler\Copy;
 use App\System\RuleHandler\Format;
+use App\System\RuleHandler\IntegratorOCModification;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -33,15 +34,8 @@ Class Controller
 
         //Distribute oc_modification to other project versions
         foreach ($configApp['integration_versions'] as $integrationVersion) {
-            foreach ($filesToDistribute['oc_modification'] as $adminCatalogDir => $adminCatalogDirs) {
-                foreach ($adminCatalogDirs as $mvcDir => $files) {
-                    foreach ($files as $file) {
-                        Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
-                        $newFile = self::copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file);
-                        self::integrate($integrationVersion, $adminCatalogDir, $mvcDir, $newFile);
-                    }
-                }
-            }
+            IntegratorOCModification::distribute($integrationVersion);
+            CLI::output('OC Modification ' . $integrationVersion . ' apply!');
         }
     }
 

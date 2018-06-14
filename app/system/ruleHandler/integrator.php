@@ -45,6 +45,10 @@ Class Integrator
     public static function getKeyRulesByVersion($version)
     {
         $conformity = static::conformity();
-        return $conformity[$version];
+        if (isset($conformity[$version])) {
+            return $conformity[$version];
+        } else {
+            return false;
+        }
     }
 }
