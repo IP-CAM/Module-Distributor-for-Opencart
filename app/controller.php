@@ -20,11 +20,11 @@ Class Controller
         $filesToDistribute = Config::filesToDistribute();
 
         foreach ($configApp['integration_versions'] as $integrationVersion) {
-            foreach ($filesToDistribute as $adminCatalogDirName => $adminCatalogDirs) {
-                foreach ($adminCatalogDirs as $mvcDirName => $files) {
+            foreach ($filesToDistribute as $adminCatalogDir => $adminCatalogDirs) {
+                foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
-                        Format::addFormatToFileIfNotExists($integrationVersion, $mvcDirName,$file);
-                        $newFile = self::copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file);
+                        Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
+                        $newFile = self::copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file);
 //                        self::integrate($integrationVersion, $adminCatalogDirName, $newFile);
                     }
                 }
@@ -32,22 +32,20 @@ Class Controller
         }
     }
 
-    private static function copyFile($integrationVersion, $adminCatalogDirName, $mvcDirName, $file)
+    private static function copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file)
     {
-        $structureRules = Structure::getRules();
+        $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDir);
 
-        $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDirName);
+        $structureDirFileToCopy = Structure::getPath($distributionVersion, $adminCatalogDir, $mvcDir);
+        $fileToCopy = Config::get('app', 'base_path_to_project') . $distributionVersion . '/' . $structureDirFileToCopy . $file;
 
-        $structureDirFileToCopy = $structureRules[Structure::conformity($distributionVersion)][$adminCatalogDirName][$mvcDirName];
-        $fileToCopy = FileSystem::parentDir(2) . $distributionVersion . '/' . $structureDirFileToCopy . $file;
-
-        $structureDirNewFile = $structureRules[Structure::conformity($integrationVersion)][$adminCatalogDirName][$mvcDirName];
-        $newFile = FileSystem::parentDir(2) . $integrationVersion . '/' . $structureDirNewFile . $file;
+        $structureDirNewFile = Structure::getPath($integrationVersion, $adminCatalogDir, $mvcDir);
+        $newFile = Config::get('app', 'base_path_to_project') . $integrationVersion . '/' . $structureDirNewFile . $file;
 
         FileSystem::createDirByFile($newFile);
         FileSystem::copyFile($fileToCopy, $newFile);
 
-        CLI::output("({$integrationVersion}) $adminCatalogDirName $mvcDirName $file created!");
+        CLI::output("({$integrationVersion}) $adminCatalogDir $mvcDir $file created!");
 
         return $newFile;
     }
