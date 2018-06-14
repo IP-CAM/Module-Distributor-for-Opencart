@@ -8,6 +8,7 @@ use App\System\RuleHandler\Structure;
 use App\System\RuleHandler\Copy;
 use App\System\RuleHandler\Format;
 use App\System\RuleHandler\IntegratorOCModification;
+use App\System\RuleHandler\Collector;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -37,6 +38,8 @@ Class Controller
             IntegratorOCModification::distribute($integrationVersion);
             CLI::output('OC Modification ' . $integrationVersion . ' apply!');
         }
+
+        Collector::run();
     }
 
     private static function copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file)

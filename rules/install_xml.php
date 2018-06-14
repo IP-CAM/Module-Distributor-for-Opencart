@@ -1,11 +1,8 @@
 <?php
-
 /**
- * Take from root site
+ * Put install.xml to root of site
  */
 
 return [
-    '2010' => '2010:2200',
-    '2300' => '2300:2302',
-    '3000' => '3000:3020'
+    '2010' => 'all'
 ];
