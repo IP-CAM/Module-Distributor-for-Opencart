@@ -10,6 +10,7 @@ use App\System\RuleHandler\Format;
 use App\System\RuleHandler\IntegratorOCModification;
 use App\System\RuleHandler\Collector;
 use App\System\RuleHandler\IntegratorAdditionalFiles;
+use App\System\RuleHandler\Archivator;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -46,6 +47,8 @@ Class Controller
         }
         
         Collector::run();
+
+        Archivator::run();
     }
 
     private static function copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file)

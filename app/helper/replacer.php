@@ -22,7 +22,7 @@ Class Replacer
     {
         $string = str_replace('{module_name}', Config::get('app', 'module_name'), $string);
 
-        $className = str_replace('_', '', ucwords(Config::get('app', 'module_name'), '_'));
+        $className = String::toCamelCase(Config::get('app', 'module_name'));
         $string = str_replace('{class_name}', $className, $string);
     }
 }

@@ -101,7 +101,7 @@ Class Collector
                     }
                 }
 
-                CLI::output('(' . $mainVersion . ') ' . $fileFromTo . ' additional collected!');
+                CLI::output('(' . $mainVersion . ') ' . $fileFromTo[1] . ' additional collected!');
             }
         }
     }
