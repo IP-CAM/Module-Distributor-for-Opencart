@@ -5,6 +5,7 @@ namespace App\System\RuleHandler;
 use App\System\Config;
 use App\Helper\FileSystem;
 use App\Helper\CLI;
+use App\Helper\Replacer;
 
 Class Collector
 {
@@ -16,10 +17,15 @@ Class Collector
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($mainVersion, $mvcDir, $file);
-                        self::copyFile($mainVersion, $adminCatalogDir, $mvcDir, $file);
+                        self::copyModuleFiles($mainVersion, $adminCatalogDir, $mvcDir, $file);
                     }
                 }
             }
+        }
+
+        //Collect additional files
+        foreach ($rules['main_versions'] as $mainVersion) {
+            self::copyAdditionalFiles($mainVersion);
         }
 
         //Collect install xml
@@ -48,7 +54,7 @@ Class Collector
         CLI::output('(' . $mainVersion . ') install.xml created!');
     }
 
-    private static function copyFile($mainVersion, $adminCatalogDir, $mvcDir, $file)
+    private static function copyModuleFiles($mainVersion, $adminCatalogDir, $mvcDir, $file)
     {
         $rules = self::getRules();
 
@@ -66,5 +72,37 @@ Class Collector
         CLI::output("({$mainVersion}) {$adminCatalogDir} {$mvcDir} {$file} collected!");
 
         return $newFile;
+    }
+
+    private static function copyAdditionalFiles($mainVersion)
+    {
+        $additionalFiles = IntegratorAdditionalFiles::getRules();
+        $collectorRules = static::getRules();
+
+        if ($additionalFiles && isset($additionalFiles[IntegratorAdditionalFiles::getKeyRulesByVersion($mainVersion)])) {
+
+            $basePath = Config::get('app', 'base_path_to_project');
+            foreach ($additionalFiles[IntegratorAdditionalFiles::getKeyRulesByVersion($mainVersion)] as $rules) {
+                $distributeVersion = $rules[0];
+                $fileFromTo = (gettype($rules[1]) == 'array') ? $rules[1] : [$rules[1], $rules[1]];
+                $replaceRules = $rules[2];
+
+                $distributeFilePath = $basePath . $distributeVersion . '/' . $fileFromTo[0];
+
+                $collectorFolder = $collectorRules['folder'];
+                $integrationFilePath = $basePath . $collectorFolder . $mainVersion . '/upload/' . $fileFromTo[1];
+
+                FileSystem::createDirByFile($integrationFilePath);
+                FileSystem::copyFile($distributeFilePath, $integrationFilePath);
+
+                if ($replaceRules) {
+                    foreach ($replaceRules as $searchReplace) {
+                        Replacer::replaceInFile($searchReplace[0], $searchReplace[1], $integrationFilePath);
+                    }
+                }
+
+                CLI::output('(' . $mainVersion . ') ' . $fileFromTo . ' additional collected!');
+            }
+        }
     }
 }

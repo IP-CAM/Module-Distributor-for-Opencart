@@ -9,6 +9,7 @@ use App\System\RuleHandler\Copy;
 use App\System\RuleHandler\Format;
 use App\System\RuleHandler\IntegratorOCModification;
 use App\System\RuleHandler\Collector;
+use App\System\RuleHandler\IntegratorAdditionalFiles;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -32,13 +33,18 @@ Class Controller
             }
         }
 
+        //Distribute additional_files to other project versions
+        foreach ($configApp['integration_versions'] as $integrationVersion) {
+            IntegratorAdditionalFiles::distribute($integrationVersion);
+            CLI::output('OC Additional file ' . $integrationVersion . ' apply!');
+        }
 
         //Distribute oc_modification to other project versions
         foreach ($configApp['integration_versions'] as $integrationVersion) {
             IntegratorOCModification::distribute($integrationVersion);
             CLI::output('OC Modification ' . $integrationVersion . ' apply!');
         }
-
+        
         Collector::run();
     }
 

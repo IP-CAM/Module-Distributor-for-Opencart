@@ -70,4 +70,23 @@ return [
             ]
         ],
     ],
+
+    'additional_files' => [
+        'all' => [
+            [
+                //Distribute version
+                '2010',
+
+                //File from -> to string or array ['from' => 'to']
+                'system/library/product.php',
+
+                //Replace rules [['search', 'replace']]
+                [
+                    [
+                        'model', 'database'
+                    ]
+                ]
+            ]
+        ],
+    ],
 ];
