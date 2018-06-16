@@ -5,11 +5,27 @@ Class Archivator
 {
     public static function create($path, $arch)
     {
-        shell_exec("zip -r {$arch} {$path}");
+        CLI::input("zip -r {$arch} {$path}");
     }
 
-    public static function createInSameFolder($path)
+    /**
+     * @param string $filesDir
+     * @param array $files
+     * @param string $archDir
+     * @param string $archName
+     */
+    public static function createFromFolder($filesDir, $files, $archDir, $archName)
     {
-        shell_exec("zip -r {$path}.zip {$path}");
+        CLI::input("cd {$filesDir} && zip -r {$archName} " . implode(' ', $files) . " && mv {$archName} {$archDir}");
+    }
+
+    /**
+     * @param string $filesDir
+     * @param array $files
+     * @param string $archName
+     */
+    public static function createInSameFolder($filesDir, $files, $archName)
+    {
+        CLI::input("cd {$filesDir} && zip -r {$archName} " . implode(' ', $files));
     }
 }

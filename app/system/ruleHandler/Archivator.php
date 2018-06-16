@@ -19,15 +19,17 @@ Class Archivator
         $moduleName = String::toCamelCase(Config::get('app', 'module_name'));
         $moduleFullName = $modulePrefix . $moduleName;
         foreach ($rules as $distributeVersion => $distributeVersionName) {
-            $files = $basePath . $collectorRules['folder'] . $distributeVersion;
-            $zip = $basePath . 'main/' . $moduleFullName . '/' . $distributeVersionName . '/' . $moduleFullName . '.ocmod.zip';
-            FileSystem::createDirByFile($zip);
-            ArchivatorHelper::create($files, $zip);
+            $filesDir = $basePath . $collectorRules['folder'] . $distributeVersion;
+            $zipDir = $basePath . 'main/' . $moduleFullName . '/' . $distributeVersionName . '/';
+            $zipName = $moduleFullName . '.ocmod.zip';
 
-            CLI::output($zip . ' created!');
+            FileSystem::createDir($zipDir);
+            ArchivatorHelper::createFromFolder($filesDir, ['upload', 'install.xml'], $zipDir, $zipName);
+
+            CLI::output($zipName . ' created!');
         }
 
-        ArchivatorHelper::createInSameFolder($basePath . 'main/' . $moduleFullName);
+        ArchivatorHelper::createInSameFolder($basePath . 'main/', [$moduleFullName], $moduleFullName . '.zip');
 
         CLI::output($moduleFullName . '.zip created!');
     }
