@@ -13,7 +13,7 @@ Class Collector
     {
         $rules = self::getRules();
         foreach ($rules['main_versions'] as $mainVersion) {
-            foreach (Config::get('filesToDistribute', 'module') as $adminCatalogDir => $adminCatalogDirs) {
+            foreach (FilesToDistribute::getModuleFiles() as $adminCatalogDir => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($mainVersion, $mvcDir, $file);

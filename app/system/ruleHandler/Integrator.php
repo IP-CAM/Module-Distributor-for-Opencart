@@ -3,7 +3,6 @@ namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
 use App\Helper\Replacer;
-use App\System\Config;
 
 Class Integrator
 {

@@ -53,6 +53,6 @@ Class IntegratorAdditionalFiles extends Integrator
 
     public static function getRules()
     {
-        return Config::get('filesToDistribute', 'additional_files');
+        return FilesToDistribute::getAdditionalFiles();
     }
 }

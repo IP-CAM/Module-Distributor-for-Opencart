@@ -3,6 +3,7 @@
 namespace App;
 
 use App\System\Config;
+use App\System\RuleHandler\FilesToDistribute;
 use App\System\RuleHandler\Integrator;
 use App\System\RuleHandler\Structure;
 use App\System\RuleHandler\Copy;
@@ -19,11 +20,10 @@ Class Controller
 {
     public static function run() {
         $configApp = Config::app();
-        $filesToDistribute = Config::filesToDistribute();
 
         //Distribute modules to other project versions
         foreach ($configApp['integration_versions'] as $integrationVersion) {
-            foreach ($filesToDistribute['module'] as $adminCatalogDir => $adminCatalogDirs) {
+            foreach (FilesToDistribute::getModuleFiles() as $adminCatalogDir => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
                         Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);

@@ -38,6 +38,6 @@ Class IntegratorOCModification extends Integrator
 
     public static function getRules()
     {
-        return Config::get('filesToDistribute', 'oc_modification');
+        return FilesToDistribute::getOCModFiles();
     }
 }
