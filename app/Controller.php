@@ -12,6 +12,7 @@ use App\System\RuleHandler\IntegratorOCModification;
 use App\System\RuleHandler\Collector;
 use App\System\RuleHandler\IntegratorAdditionalFiles;
 use App\System\RuleHandler\Archivator;
+use App\System\RuleHandler\InstallXML;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
@@ -45,6 +46,8 @@ Class Controller
             IntegratorOCModification::distribute($integrationVersion);
             CLI::output('OC Modification ' . $integrationVersion . ' apply!');
         }
+
+        InstallXML::applyModifications();
         
         Collector::run();
 
