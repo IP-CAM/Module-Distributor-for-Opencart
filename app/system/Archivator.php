@@ -1,11 +1,10 @@
 <?php
-namespace App\System\RuleHandler;
+namespace App\System;
 
 use App\Helper\String;
 use App\Helper\FileSystem;
 use App\Helper\Archivator as ArchivatorHelper;
 use App\Helper\CLI;
-use App\System\Config;
 
 Class Archivator
 {
@@ -36,6 +35,6 @@ Class Archivator
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../../rules/archivator.php';
+        return require __DIR__ . '/../../rules/archivator.php';
     }
 }

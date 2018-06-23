@@ -1,8 +1,13 @@
 <?php
 
-namespace App\System\RuleHandler;
+namespace App\System;
 
-use App\System\Config;
+use App\System\RuleHandler\FilesToDistribute;
+use App\System\RuleHandler\Format;
+use App\System\RuleHandler\InstallXML;
+use App\System\RuleHandler\Structure;
+use App\System\RuleHandler\IntegratorAdditionalFiles;
+
 use App\Helper\FileSystem;
 use App\Helper\CLI;
 use App\Helper\Replacer;
@@ -36,7 +41,7 @@ Class Collector
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../../rules/collector.php';
+        return require __DIR__ . '/../../rules/collector.php';
     }
 
     private static function copyInstallXML($mainVersion)
