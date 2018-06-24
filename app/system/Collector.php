@@ -10,7 +10,7 @@ use App\System\RuleHandler\IntegratorAdditionalFiles;
 
 use App\Helper\FileSystem;
 use App\Helper\CLI;
-use App\Helper\Replacer;
+use App\Helper\File;
 
 Class Collector
 {
@@ -102,7 +102,7 @@ Class Collector
 
                 if ($replaceRules) {
                     foreach ($replaceRules as $searchReplace) {
-                        Replacer::replaceInFile($searchReplace[0], $searchReplace[1], $integrationFilePath);
+                        File::replaceText($searchReplace[0], $searchReplace[1], $integrationFilePath);
                     }
                 }
 

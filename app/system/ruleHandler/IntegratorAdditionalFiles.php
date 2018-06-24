@@ -4,7 +4,7 @@ namespace App\System\RuleHandler;
 
 use App\System\Config;
 use App\Helper\FileSystem;
-use App\Helper\Replacer;
+use App\Helper\File;
 use App\Helper\Interpretation;
 
 
@@ -31,7 +31,7 @@ Class IntegratorAdditionalFiles extends Integrator
 
                 if ($replaceRules) {
                     foreach ($replaceRules as $searchReplace) {
-                        Replacer::replaceInFile($searchReplace[0], $searchReplace[1], $integrationFilePath);
+                        File::replaceText($searchReplace[0], $searchReplace[1], $integrationFilePath);
                     }
                 }
             }

@@ -2,7 +2,7 @@
 namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
-use App\Helper\Replacer;
+use App\Helper\File;
 
 Class Integrator
 {
@@ -29,7 +29,7 @@ Class Integrator
 
         if (!empty($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDir])) {
             foreach ($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDir] as $rule) {
-                Replacer::replaceInFile($rule[0], $rule[1], $file);
+                File::replaceText($rule[0], $rule[1], $file);
             }
         }
     }

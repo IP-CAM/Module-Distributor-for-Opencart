@@ -37,7 +37,7 @@ Class InstallXML
         foreach ($fullVersions as $integrationVersion) {
 
             $xmlDistributorVersion = self::getInstallXMLDistributor($integrationVersion);
-            $xml = File::read($xmlDistributorVersion, 'install.xml');
+            $xml = File::read('install.xml', $xmlDistributorVersion);
 
             if (empty($xml)) {
                 continue;
