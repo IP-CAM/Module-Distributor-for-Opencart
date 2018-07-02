@@ -1,7 +1,7 @@
 <?php
 namespace App\System;
 
-use App\Helper\String;
+use App\Helper\UserString;
 use App\Helper\FileSystem;
 use App\Helper\Archivator as ArchivatorHelper;
 use App\Helper\CLI;
@@ -14,8 +14,8 @@ Class Archivator
         $collectorRules = Collector::getRules();
 
         $basePath = Config::get('app', 'base_path_to_project');
-        $modulePrefix = String::toCamelCase(Config::get('app', 'module_prefix'));
-        $moduleName = String::toCamelCase(Config::get('app', 'module_name'));
+        $modulePrefix = UserString::toCamelCase(Config::get('app', 'module_prefix'));
+        $moduleName = UserString::toCamelCase(Config::get('app', 'module_name'));
         $moduleFullName = $modulePrefix . $moduleName;
         foreach ($rules as $distributeVersion => $distributeVersionName) {
             $filesDir = $basePath . $collectorRules['folder'] . $distributeVersion;
@@ -23,7 +23,7 @@ Class Archivator
             $zipName = $moduleFullName . '.ocmod.zip';
 
             FileSystem::createDir($zipDir);
-            ArchivatorHelper::createFromFolder($filesDir, ['upload', 'install.xml'], $zipDir, $zipName);
+            ArchivatorHelper::createFromFolder($filesDir, ['upload', 'install.xml', 'install.php', 'install.sql'], $zipDir, $zipName);
 
             CLI::output($zipName . ' created!');
         }

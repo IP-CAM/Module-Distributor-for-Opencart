@@ -5,6 +5,8 @@ namespace App\System;
 use App\System\RuleHandler\FilesToDistribute;
 use App\System\RuleHandler\Format;
 use App\System\RuleHandler\InstallXML;
+use App\System\RuleHandler\InstallSQL;
+use App\System\RuleHandler\InstallPHP;
 use App\System\RuleHandler\Structure;
 use App\System\RuleHandler\IntegratorAdditionalFiles;
 
@@ -37,6 +39,16 @@ Class Collector
         foreach ($rules['main_versions'] as $mainVersion) {
             self::copyInstallXML($mainVersion);
         }
+
+        //Collect install sql
+        foreach ($rules['main_versions'] as $mainVersion) {
+            self::copyInstallSQL($mainVersion);
+        }
+
+        //Collect install php
+        foreach ($rules['main_versions'] as $mainVersion) {
+            self::copyInstallPHP($mainVersion);
+        }
     }
 
     public static function getRules()
@@ -57,6 +69,36 @@ Class Collector
         FileSystem::copyFile($fileFrom, $fileTo);
 
         CLI::output('(' . $mainVersion . ') install.xml created!');
+    }
+
+    private static function copyInstallSQL($mainVersion)
+    {
+        $rules = self::getRules();
+
+        $distributorVersion = InstallSQL::getInstallSQLDistributor($mainVersion);
+
+        $baseDir = Config::get('app', 'base_path_to_project');
+        $fileFrom = $baseDir . $distributorVersion . '/install.sql';
+        $fileTo = $baseDir . $rules['folder'] . $mainVersion . '/install.sql';
+
+        FileSystem::copyFile($fileFrom, $fileTo);
+
+        CLI::output('(' . $mainVersion . ') install.sql created!');
+    }
+
+    private static function copyInstallPHP($mainVersion)
+    {
+        $rules = self::getRules();
+
+        $distributorVersion = InstallPHP::getInstallPHPDistributor($mainVersion);
+
+        $baseDir = Config::get('app', 'base_path_to_project');
+        $fileFrom = $baseDir . $distributorVersion . '/install.php';
+        $fileTo = $baseDir . $rules['folder'] . $mainVersion . '/install.php';
+
+        FileSystem::copyFile($fileFrom, $fileTo);
+
+        CLI::output('(' . $mainVersion . ') install.php created!');
     }
 
     private static function copyModuleFiles($mainVersion, $adminCatalogDir, $mvcDir, $file)

@@ -49,7 +49,7 @@ Class File
     {
         $string = str_replace('{module_name}', Config::get('app', 'module_name'), $string);
 
-        $className = String::toCamelCase(Config::get('app', 'module_name'));
+        $className = UserString::toCamelCase(Config::get('app', 'module_name'));
         $string = str_replace('{class_name}', $className, $string);
     }
 

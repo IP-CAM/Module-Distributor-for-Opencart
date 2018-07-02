@@ -1,7 +1,7 @@
 <?php
 namespace App\Helper;
 
-Class String
+Class UserString
 {
     public static function toCamelCase($name)
     {
