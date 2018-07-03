@@ -10,13 +10,17 @@ return [
 
     '2300:3020' => [
         'admin' => [
-            'ModelModule{class_name}',
-            'ModelExtensionModule{class_name}'
+            [
+                'ModelModule{class_name}',
+                'ModelExtensionModule{class_name}'
+            ]
         ],
 
         'catalog' => [
-            'ModelModule{class_name}',
-            'ModelExtensionModule{class_name}'
+            [
+                'ModelModule{class_name}',
+                'ModelExtensionModule{class_name}'
+            ]
         ]
     ]
 ];
