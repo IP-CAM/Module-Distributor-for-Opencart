@@ -35,10 +35,10 @@ return [
             ],
             [
                 'if (file_exists(DIR_TEMPLATE . $this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\')) {
-                    return $this->load->view($this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\', $data);
-                } else {
-                    return $this->load->view(\'default/template/module/{module_name}.tpl\', $data);
-                }',
+            return $this->load->view($this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\', $data);
+        } else {
+            return $this->load->view(\'default/template/module/{module_name}.tpl\', $data);
+        }',
                 'return $this->load->view(\'module/{module_name}\', $data);'
             ]
         ]
@@ -99,10 +99,10 @@ return [
             ],
             [
                 'if (file_exists(DIR_TEMPLATE . $this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\')) {
-                    return $this->load->view($this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\', $data);
-                } else {
-                    return $this->load->view(\'default/template/module/{module_name}.tpl\', $data);
-                }',
+            return $this->load->view($this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\', $data);
+        } else {
+            return $this->load->view(\'default/template/module/{module_name}.tpl\', $data);
+        }',
                 'return $this->load->view(\'extension/module/{module_name}\', $data);'
             ]
         ]
@@ -167,14 +167,14 @@ return [
             ],
             [
                 '$this->config->get(\'config_product_description_length\')',
-                '$this->config->get($this->config->get(\'config_theme\') . \'_product_description_length\')'
+                '$this->config->get(\'theme_\' . $this->config->get(\'config_theme\') . \'_product_description_length\')'
             ],
             [
                 'if (file_exists(DIR_TEMPLATE . $this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\')) {
-                    return $this->load->view($this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\', $data);
-                } else {
-                    return $this->load->view(\'default/template/module/{module_name}.tpl\', $data);
-                }',
+            return $this->load->view($this->config->get(\'config_template\') . \'/template/module/{module_name}.tpl\', $data);
+        } else {
+            return $this->load->view(\'default/template/module/{module_name}.tpl\', $data);
+        }',
                 'return $this->load->view(\'extension/module/{module_name}\', $data);'
             ]
         ]
