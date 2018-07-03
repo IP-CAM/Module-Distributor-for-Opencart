@@ -31,4 +31,9 @@ Class FileSystem
     {
         return str_repeat('../', $level);
     }
+
+    public static function copyDir($from, $to)
+    {
+        CLI::input("cp -rf {$from} {$to}");
+    }
 }

@@ -56,7 +56,7 @@ Class InstallXML
                 foreach ($tableModificationRules as $name => $value) {
                     $value = str_replace('{xml}', $xml, $value);
 
-                    $query .= " `{$name}` = '{$value}',";
+                    $query .= " `{$name}` = '{$db->escape($value)}',";
                 }
                 $query = substr($query, 0, -1);
 

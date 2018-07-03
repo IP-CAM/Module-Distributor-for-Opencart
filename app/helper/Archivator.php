@@ -28,4 +28,9 @@ Class Archivator
     {
         CLI::input("cd {$filesDir} && zip -r {$archName} " . implode(' ', $files));
     }
+
+    public static function removePathFromArchive($archName, $path)
+    {
+        CLI::input("zip --delete {$archName} \"{$path}\"");
+    }
 }

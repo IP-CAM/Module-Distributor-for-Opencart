@@ -17,13 +17,20 @@ Class Archivator
         $modulePrefix = UserString::toCamelCase(Config::get('app', 'module_prefix'));
         $moduleName = UserString::toCamelCase(Config::get('app', 'module_name'));
         $moduleFullName = $modulePrefix . $moduleName;
-        foreach ($rules as $distributeVersion => $distributeVersionName) {
+        foreach ($rules as $distributeVersion => $rule) {
             $filesDir = $basePath . $collectorRules['folder'] . $distributeVersion;
-            $zipDir = $basePath . 'main/' . $moduleFullName . '/' . $distributeVersionName . '/';
+            $zipDir = $basePath . 'main/' . $moduleFullName . '/' . $rule['name'] . '/';
             $zipName = $moduleFullName . '.ocmod.zip';
 
             FileSystem::createDir($zipDir);
             ArchivatorHelper::createFromFolder($filesDir, ['upload', 'install.xml', 'install.php', 'install.sql'], $zipDir, $zipName);
+
+            if (!$rule['is_upload_in_archive']) {
+                ArchivatorHelper::removePathFromArchive($zipDir . $zipName, 'upload/admin/*');
+                ArchivatorHelper::removePathFromArchive($zipDir . $zipName, 'upload/catalog/*');
+                FileSystem::createDir($zipDir . '/upload/');
+                FileSystem::copyDir($filesDir . '/upload/*', $zipDir . '/upload/');
+            }
 
             CLI::output($zipName . ' created!');
         }
