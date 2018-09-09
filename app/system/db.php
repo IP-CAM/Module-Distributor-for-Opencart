@@ -1,6 +1,8 @@
 <?php
 namespace App\System;
 
+use App\Helper\Logger;
+
 class DB {
 	private $connection;
 
@@ -16,9 +18,13 @@ class DB {
 	}
 
 	public function query($sql) {
-		$query = $this->connection->query($sql);
 
-		if (!$this->connection->errno) {
+        $log = new Logger('query.sql');
+
+        $log->write($sql);
+        $query = $this->connection->query($sql);
+
+        if (!$this->connection->errno) {
 			if ($query instanceof \mysqli_result) {
 				$data = array();
 

@@ -5,6 +5,7 @@ use App\Helper\UserString;
 use App\Helper\FileSystem;
 use App\Helper\Archivator as ArchivatorHelper;
 use App\Helper\CLI;
+use App\System\RuleHandler\Obfuscator as ObfuscatorRules;
 
 Class Archivator
 {
@@ -24,6 +25,8 @@ Class Archivator
 
             FileSystem::createDir($zipDir);
             ArchivatorHelper::createFromFolder($filesDir, ['upload', 'install.xml', 'install.php', 'install.sql'], $zipDir, $zipName);
+
+            ArchivatorHelper::removePathFromArchive($zipDir . $zipName, '*' . ObfuscatorRules::$postfix);
 
             if (!$rule['is_upload_in_archive']) {
                 ArchivatorHelper::removePathFromArchive($zipDir . $zipName, 'upload/admin/*');

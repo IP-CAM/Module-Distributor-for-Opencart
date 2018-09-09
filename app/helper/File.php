@@ -45,6 +45,10 @@ Class File
         }
     }
 
+    public static function isExists($filePath) {
+        return file_exists($filePath);
+    }
+
     private static function replaceShortCodes(&$string)
     {
         $string = str_replace('{module_name}', Config::get('app', 'module_name'), $string);
