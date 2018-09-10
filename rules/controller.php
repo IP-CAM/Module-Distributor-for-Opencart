@@ -63,8 +63,8 @@ return [
                 'ControllerExtensionModule{class_name}'
             ],
             [
-                '\'module/{module_name}\'',
-                '\'extension/module/{module_name}\''
+                '\'module/{module_name}',
+                '\'extension/module/{module_name}'
             ],
             [
                 '$this->language->get(\'text_module\'),',
@@ -75,8 +75,8 @@ return [
                 'link(\'extension/extension\''
             ],
             [
-                '$this->load->view(\'module/{module_name}.tpl\', $data)',
-                '$this->load->view(\'extension/module/{module_name}\', $data)'
+                '{module_name}.tpl',
+                '{module_name}'
             ]
         ],
 
@@ -139,16 +139,16 @@ return [
                 'ControllerExtensionModule{class_name}'
             ],
             [
-                '\'module/{module_name}\'',
-                '\'extension/module/{module_name}\''
+                '\'module/{module_name}',
+                '\'extension/module/{module_name}'
             ],
             [
                 'link(\'extension/module\'',
                 'link(\'marketplace/extension\''
             ],
             [
-                '$this->load->view(\'module/{module_name}.tpl\', $data)',
-                '$this->load->view(\'extension/module/{module_name}\', $data)'
+                '{module_name}.tpl',
+                '{module_name}'
             ]
         ],
 
