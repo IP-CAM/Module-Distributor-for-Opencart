@@ -11,7 +11,7 @@ Class Archivator
 {
     public static function run()
     {
-        $rules = self::getRules();
+        $rules = Rule::get(Rule::ARCHIVATOR);
         $collectorRules = Collector::getRules();
 
         $basePath = Config::get('app', 'base_path_to_project');
@@ -41,10 +41,5 @@ Class Archivator
         ArchivatorHelper::createInSameFolder($basePath . 'main/', [$moduleFullName], $moduleFullName . '.zip');
 
         CLI::output($moduleFullName . '.zip created!');
-    }
-
-    public static function getRules()
-    {
-        return require __DIR__ . '/../../d_rules/archivator.php';
     }
 }

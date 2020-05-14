@@ -28,7 +28,7 @@ class Rule
             throw new \Exception('Rule::get() Not Available Name!');
         }
 
-        $path = __DIR__ . "/../../../../d_rules/{$name}.php";
+        $path = __DIR__ . "/../../../d_rules/{$name}.php";
         if (!file_exists($path)) {
             throw new \Exception("Rule::get() [d_rules/{$name}.php] file is not exists!");
         }

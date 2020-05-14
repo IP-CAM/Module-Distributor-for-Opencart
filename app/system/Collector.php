@@ -53,7 +53,7 @@ Class Collector
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../d_rules/collector.php';
+        return Rule::get(Rule::COLLECTOR);
     }
 
     private static function copyInstallXML($mainVersion)
