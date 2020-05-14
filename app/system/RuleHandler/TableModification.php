@@ -1,10 +1,12 @@
 <?php
 namespace App\System\RuleHandler;
 
+use App\system\Rule;
+
 Class TableModification extends Integrator
 {
     public static function getRules()
     {
-        return require __DIR__ . '/../../../rules/table_modification.php';
+        return Rule::get(Rule::TABLE_MODIFICATION);
     }
 }

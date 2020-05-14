@@ -2,6 +2,7 @@
 namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
+use App\system\Rule;
 
 Class Format
 {
@@ -10,8 +11,7 @@ Class Format
         $currentFormat = pathinfo($file,PATHINFO_EXTENSION);
 
         if (empty($currentFormat)) {
-            $rules = self::getRules();
-
+            $rules = Rule::get(Rule::FORMAT);
             foreach ($rules[$mvcDir] as $versions => $format) {
                 $arr = Interpretation::rangeToArray($versions);
                 if (in_array($integrationVersion, $arr)) {
@@ -22,10 +22,5 @@ Class Format
         }
 
         return $file;
-    }
-
-    public static function getRules()
-    {
-        return require __DIR__ . '/../../../rules/format.php';
     }
 }

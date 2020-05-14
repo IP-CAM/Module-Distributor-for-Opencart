@@ -2,6 +2,8 @@
 
 namespace App\System\RuleHandler;
 
+use App\system\Rule;
+
 Class Obfuscator extends Integrator
 {
     public static $postfix = '.original';
@@ -10,6 +12,6 @@ Class Obfuscator extends Integrator
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../../rules/obfuscator.php';
+        return Rule::get(Rule::OBFUSCATOR);
     }
 }

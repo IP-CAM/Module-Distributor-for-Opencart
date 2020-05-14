@@ -9,11 +9,11 @@ return [
 //    'integration_versions' => ['2010', '2011', '2020', '2031', '2101', '2102', '2200', '2302'],
 
     'db' => [
-      'hostname' => 'localhost',
-      'username' => 'denis',
-      'password'  => '111den123',
-      'database_prefix'  => 'ocfilter_',
-      'table_prefix' => 'oc_'
+        'hostname' => 'localhost',
+        'username' => 'denis',
+        'password'  => '111den123',
+        'database_prefix'  => 'ocfilter_',
+        'table_prefix' => 'oc_'
     ]
 //    'integration_versions' => ['2302']
 ];

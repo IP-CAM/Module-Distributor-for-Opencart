@@ -1,6 +1,8 @@
 <?php
 namespace App\System\RuleHandler;
 
+use App\system\Rule;
+
 Class Structure extends Integrator
 {
     protected static $storageConformity = null;
@@ -13,6 +15,6 @@ Class Structure extends Integrator
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../../rules/structure.php';
+        return Rule::get(Rule::STRUCTURE);
     }
 }

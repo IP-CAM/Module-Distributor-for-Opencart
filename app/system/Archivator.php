@@ -45,6 +45,6 @@ Class Archivator
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../rules/archivator.php';
+        return require __DIR__ . '/../../d_rules/archivator.php';
     }
 }

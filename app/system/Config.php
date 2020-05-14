@@ -5,7 +5,11 @@ Class Config
 {
     public static function app()
     {
-        return require __DIR__ . '/../../config/app.php';
+        $path = __DIR__ . '/../../../distributor_config.php';
+        if (!file_exists($path)) {
+            throw new \Exception('distributor_config.php Not Found!');
+        }
+        return require $path;
     }
 
     public static function get($type, $configName)

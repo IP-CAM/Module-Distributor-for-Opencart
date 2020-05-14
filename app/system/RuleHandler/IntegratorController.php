@@ -1,12 +1,14 @@
 <?php
 namespace App\System\RuleHandler;
 
-Class IntegratorModel extends Integrator
+use App\system\Rule;
+
+Class IntegratorController extends Integrator
 {
     protected static $storageConformity = null;
 
     public static function getRules()
     {
-        return require __DIR__ . '/../../../rules/model.php';
+        return Rule::get(Rule::CONTROLLER);
     }
 }

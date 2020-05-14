@@ -6,18 +6,13 @@ use App\Helper\CLI;
 use App\Helper\File;
 use App\System\Config;
 use App\System\DB;
+use App\system\Rule;
 
 Class InstallXML
 {
-    public static function getRules()
-    {
-        return require __DIR__ . '/../../../rules/install_xml.php';
-    }
-
     public static function getInstallXMLDistributor($integrationVersion)
     {
-        $rules = static::getRules();
-
+        $rules = Rule::get(Rule::INSTALL_XML);
         foreach ($rules as $distributeVersion => $stringIntegrationVersions) {
             $integrationVersions = Interpretation::rangeToArray($stringIntegrationVersions);
 
@@ -30,7 +25,6 @@ Class InstallXML
     public static function applyModifications()
     {
         $configApp = Config::app();
-
         $fullVersions = $configApp['integration_versions'];
         $fullVersions[] = $configApp['distribution_version'];
 

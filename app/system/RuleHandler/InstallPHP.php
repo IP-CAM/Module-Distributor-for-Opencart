@@ -2,18 +2,13 @@
 namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
+use App\system\Rule;
 
 Class InstallPHP
 {
-    public static function getRules()
-    {
-        return require __DIR__ . '/../../../rules/install_php.php';
-    }
-
     public static function getInstallPHPDistributor($integrationVersion)
     {
-        $rules = static::getRules();
-
+        $rules = Rule::get(Rule::INSTALL_PHP);
         foreach ($rules as $distributeVersion => $stringIntegrationVersions) {
             $integrationVersions = Interpretation::rangeToArray($stringIntegrationVersions);
 

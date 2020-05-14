@@ -2,13 +2,13 @@
 namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
+use App\system\Rule;
 
 Class Copy
 {
     public static function getDistributeVersion($integrationVersion, $mvcDir)
     {
-        $rules = self::getRules();
-
+        $rules = Rule::get(Rule::COPY);
         foreach ($rules[$mvcDir] as $distributeVersion => $conformity) {
             if (in_array($integrationVersion, Interpretation::rangeToArray($conformity))) {
                 return (string)$distributeVersion;
@@ -17,10 +17,5 @@ Class Copy
 
         new \Exception('Do not much integration version');
         return false;
-    }
-
-    public static function getRules()
-    {
-        return require __DIR__ . '/../../../rules/copy.php';
     }
 }

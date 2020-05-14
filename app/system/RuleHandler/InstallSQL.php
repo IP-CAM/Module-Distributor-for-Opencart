@@ -2,21 +2,15 @@
 namespace App\System\RuleHandler;
 
 use App\Helper\Interpretation;
+use App\system\Rule;
 
 Class InstallSQL
 {
-    public static function getRules()
-    {
-        return require __DIR__ . '/../../../rules/install_sql.php';
-    }
-
     public static function getInstallSQLDistributor($integrationVersion)
     {
-        $rules = static::getRules();
-
+        $rules = Rule::get(Rule::INSTALL_SQL);
         foreach ($rules as $distributeVersion => $stringIntegrationVersions) {
             $integrationVersions = Interpretation::rangeToArray($stringIntegrationVersions);
-
             if (in_array($integrationVersion, $integrationVersions)) {
                 return (string)$distributeVersion;
             }
