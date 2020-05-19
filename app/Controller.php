@@ -16,7 +16,7 @@ Class Controller
     public static function run() {
         Distributor::run();
         AdditionalFiles::run();
-        InstallXML::applyModifications();
+        InstallXML::run();
 
         Collector::run();
         Obfuscator::run();
