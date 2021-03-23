@@ -16,12 +16,6 @@ Class FilesToDistribute
         return $rules['module'];
     }
 
-    public static function getOCModFiles()
-    {
-        $rules = static::getRules();
-        return $rules['oc_modification'];
-    }
-
     public static function getAdditionalFiles()
     {
         $rules = static::getRules();

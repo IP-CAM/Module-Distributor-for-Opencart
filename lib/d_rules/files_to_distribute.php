@@ -52,25 +52,6 @@ return [
         ]
     ],
 
-    'oc_modification' => [
-        '2010:2200' => [
-            [
-                //Distribute from version
-                '2010',
-
-                //File
-                'admin/controller/catalog/category.php',
-
-                //Replace rules [['search', 'replace']]
-                [
-                    [
-                        'search', 'replace'
-                    ]
-                ]
-            ]
-        ],
-    ],
-
     'additional_files' => [
         'all' => [
             [

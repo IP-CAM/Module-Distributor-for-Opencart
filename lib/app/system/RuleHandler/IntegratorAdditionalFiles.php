@@ -2,10 +2,8 @@
 
 namespace App\System\RuleHandler;
 
-use App\System\Config;
 use App\Helper\FileSystem;
 use App\Helper\File;
-use App\Helper\Interpretation;
 
 
 Class IntegratorAdditionalFiles extends Integrator
@@ -33,19 +31,6 @@ Class IntegratorAdditionalFiles extends Integrator
                         File::replaceText($searchReplace[0], $searchReplace[1], $integrationFilePath);
                     }
                 }
-            }
-        }
-    }
-
-    public static function getDistributorToIntegration($integrationVersion)
-    {
-        $rules = static::getRules();
-
-        foreach ($rules as $distributeVersion => $stringIntegrationVersions) {
-            $integrationVersions = Interpretation::rangeToArray($stringIntegrationVersions);
-
-            if (in_array($integrationVersion, $integrationVersions)) {
-                return (string)$distributeVersion;
             }
         }
     }
