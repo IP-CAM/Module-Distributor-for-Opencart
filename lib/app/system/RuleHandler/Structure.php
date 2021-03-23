@@ -10,7 +10,7 @@ Class Structure extends Integrator
     public static function getPath($version, $catalogAdminDir, $mvcDir)
     {
         $rules = static::getRules();
-        return $rules[static::getKeyRulesByVersion($version)][$catalogAdminDir][$mvcDir];
+        return $rules[static::getKeyRulesByVersion($version)][$catalogAdminDir][$mvcDir] ?? null;
     }
 
     public static function getRules()
