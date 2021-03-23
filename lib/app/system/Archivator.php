@@ -17,7 +17,7 @@ Class Archivator
         $moduleFullName = $modulePrefix . $moduleName;
         foreach ($rules as $distributeVersion => $rule) {
             $filesDir = Config::get('app', 'collection_folder') . $distributeVersion;
-            $zipDir = 'main/' . $moduleFullName . '/' . $rule['name'] . '/';
+            $zipDir = Config::get('app', 'collection_folder') . $moduleFullName . '/' . $rule['name'] . '/';
             $zipName = $moduleFullName . '.ocmod.zip';
 
             FileSystem::createDir($zipDir);
@@ -35,7 +35,7 @@ Class Archivator
             CLI::output($zipName . ' created!');
         }
 
-        ArchivatorHelper::createInSameFolder('main/', [$moduleFullName], $moduleFullName . '.zip');
+        ArchivatorHelper::createInSameFolder(Config::get('app', 'collection_folder'), [$moduleFullName], $moduleFullName . '.zip');
 
         CLI::output($moduleFullName . '.zip created!');
     }

@@ -5,6 +5,9 @@ DEVELOPING!!!
 Its framework for resolve task: Develops a module on one version and integrates to another versions automatic! This framework is extension for [Opencart Quick Deploy framework](https://github.com/denis-kisel/opencart-deploy).
 `Only for linux systems!`
 
+## Requirements
+- Zip (`sudo apt install zip`)
+- PHP >= v7.0
 
 ## Demo
 ```

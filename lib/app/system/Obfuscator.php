@@ -21,7 +21,7 @@ Class Obfuscator
             foreach ($archivatorRules as $mainVersion => $archivatorRule) {
                 $obfuscatorKey = ObfuscatorHandler::getKeyRulesByVersion($mainVersion);
                 foreach ($obfuscatorRules[$obfuscatorKey] as $file) {
-                    $collectorFolder = $archivatorRules['folder'];
+                    $collectorFolder = Config::get('app', 'collection_folder');
 
                     $fileToObfuscate = $collectorFolder . $mainVersion . '/upload/' . $file;
 
