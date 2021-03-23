@@ -1,7 +1,8 @@
 <?php
 $name = \App\System\Config::get('app', 'module_name');
 $author = \App\System\Config::get('app', 'author');
-$version = \App\System\Config::get('app', 'version');;
+$version = \App\System\Config::get('app', 'version');
+$link = \App\System\Config::get('app', 'site');
 $date_added = date('Y-m-d H:i:s');
 
 return [
@@ -9,7 +10,7 @@ return [
         'name' => $name,
         'author' => $author,
         'version' => $version,
-        'link' => '',
+        'link' => $link,
         'code' => '{xml}',
         'status' => 1,
         'date_added' => $date_added,
@@ -20,7 +21,7 @@ return [
         'code' => $name,
         'author' => $author,
         'version' => $version,
-        'link' => '',
+        'link' => $link,
         'xml' => '{xml}',
         'status' => 1,
         'date_added' => $date_added,
@@ -32,7 +33,7 @@ return [
         'code' => $name,
         'author' => $author,
         'version' => $version,
-        'link' => '',
+        'link' => $link,
         'xml' => '{xml}',
         'status' => 1,
         'date_added' => $date_added,
