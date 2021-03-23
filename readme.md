@@ -27,11 +27,13 @@ $ oc-dist-init
 First of all you need to deploy some versions of OC by [Opencart Quick Deploy framework](https://github.com/denis-kisel/opencart-deploy) and configure `distributor_config.php`.  
 Then you need to edit some rules for specific your module:
 
-#### Define all files of module
+
+### Define all files of module
 First rules what should edit its `d_rules/files_to_distribute.php`   
 Need to set all relative files pathes of module
 
-#### Base integration
+
+### Base integration
 Edit rules: 
 - `d_rules/controller.php`
 - `d_rules/view.php`
@@ -51,14 +53,15 @@ For example: you need to integrate base code of controller file from 2000 versio
 ]
 ```
 
-#### You need to install.xml file in your module?
+
+### You need to install.xml file in your module?
 This file will automatic generated!  
 First of all you need to set config `modification_code` in `distributor_config.php`
 
 Then you can set modifications in `d_rules/install_xml.php` file
 
 
-#### You need to install.php or install.sql file in your module?
+### You need to install.php or install.sql file in your module?
 Just put `install.php` to root of developing site. For example: you have versions: 2000, 2200, 2300. Your developing version is 2000. Its meat what your file will be by path `your_site/2000/install.php`
 
 Then you can config distribute file in `d_rules/install_php.php`.  
@@ -66,11 +69,11 @@ Then you can config distribute file in `d_rules/install_php.php`.
 Config `install.sql` by analogy.
 
 
-#### Archivator
+### Archivator
 Configure `d_rules/archivator.php` to final collector your module
 
 
-#### Obfuscate some files(for safe licence)
+### Obfuscate some files(for safe licence)
 Configure `d_rules/obfuscator.php`
 
 
