@@ -16,8 +16,6 @@ class InterpretationTest extends TestCase
     public function additionalProvider()
     {
         $allVersions = Config::get('app', 'integration_versions');
-        array_unshift($allVersions, Config::get('app', 'distribution_version'));
-
         return [
             ['all', $allVersions],
             ['2010:2012', ['2010', '2011', '2012']],

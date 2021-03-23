@@ -10,28 +10,32 @@ use App\system\Rule;
 
 Class InstallXML
 {
-    public static function getInstallXMLDistributor($integrationVersion)
+    public static function run()
     {
         $rules = Rule::get(Rule::INSTALL_XML);
-        foreach ($rules as $distributeVersion => $stringIntegrationVersions) {
-            $integrationVersions = Interpretation::rangeToArray($stringIntegrationVersions);
-
-            if (in_array($integrationVersion, $integrationVersions)) {
-                return (string)$distributeVersion;
+        $xmlTemplate = $rules['template'];
+        $allVersions = Config::get('app', 'integration_versions');
+        if (!empty($rules['modifications'])) {
+            foreach ($rules['modifications'] as $rangeVersionsString => $modification) {
+                foreach ($allVersions as $version) {
+                    if (Interpretation::inRange($rangeVersionsString, $version)) {
+                        $xmlContent = str_replace('{modifications}', $modification, $xmlTemplate);
+                        File::write('install.xml', $xmlContent, $version);
+                    }
+                }
             }
         }
+
+        self::applyModifications();
     }
 
     public static function applyModifications()
     {
         $configApp = Config::app();
-        $fullVersions = $configApp['integration_versions'];
-        $fullVersions[] = $configApp['distribution_version'];
+        $integrationsVersions = $configApp['integration_versions'];
+        foreach ($integrationsVersions as $integrationVersion) {
 
-        foreach ($fullVersions as $integrationVersion) {
-
-            $xmlDistributorVersion = self::getInstallXMLDistributor($integrationVersion);
-            $xml = File::read('install.xml', $xmlDistributorVersion);
+            $xml = File::read('install.xml', $integrationVersion);
 
             if (empty($xml)) {
                 continue;

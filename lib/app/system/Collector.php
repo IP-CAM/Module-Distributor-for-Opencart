@@ -60,10 +60,8 @@ Class Collector
     {
         $rules = self::getRules();
 
-        $distributorVersion = InstallXML::getInstallXMLDistributor($mainVersion);
-
         $baseDir = Config::get('app', 'base_path_to_project');
-        $fileFrom = $baseDir . $distributorVersion . '/install.xml';
+        $fileFrom = $baseDir . $mainVersion . '/install.xml';
         $fileTo = $baseDir . $rules['folder'] . $mainVersion . '/install.xml';
 
         FileSystem::copyFile($fileFrom, $fileTo);

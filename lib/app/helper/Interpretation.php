@@ -11,9 +11,7 @@ Class Interpretation
      */
     public static function rangeToArray($range) {
         if ($range == 'all') {
-            $allVersions = Config::get('app', 'integration_versions');
-            array_unshift($allVersions, Config::get('app', 'distribution_version'));
-            return $allVersions;
+            return Config::get('app', 'integration_versions');
         }
 
         $rangeToArray = explode(':', $range);
@@ -26,5 +24,9 @@ Class Interpretation
         }
 
         return $rangeToArray;
+    }
+
+    public static function inRange($range, $version) {
+        return in_array($version, self::rangeToArray($range));
     }
 }
