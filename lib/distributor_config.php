@@ -5,6 +5,7 @@ return [
     'module_prefix' => '', // Use for prefix of archive
     'integration_versions' => ['2010', '2011', '2020', '2031', '2101', '2102', '2200', '2302', '3000', '3011', '3012', '3020'],
     'collection_folder' => 'dist/',
+    'project_path' => '/var/www/your-project',
 
     'author' => 'Your email',
     'site' => 'Your website',

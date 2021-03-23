@@ -21,8 +21,12 @@ Class Archivator
             $zipName = $moduleFullName . '.ocmod.zip';
 
             FileSystem::createDir($zipDir);
-            ArchivatorHelper::createFromFolder($filesDir, ['upload', 'install.xml', 'install.php', 'install.sql'], $zipDir, $zipName);
-
+            ArchivatorHelper::createFromFolder(
+                $filesDir,
+                ['upload', 'install.xml', 'install.php', 'install.sql'],
+                FileSystem::projectPath() . '/' . $zipDir,
+                $zipName
+            );
             ArchivatorHelper::removePathFromArchive($zipDir . $zipName, '*' . ObfuscatorRules::$postfix);
 
             if (!$rule['is_upload_in_archive']) {
@@ -31,8 +35,6 @@ Class Archivator
                 FileSystem::createDir($zipDir . '/upload/');
                 FileSystem::copyDir($filesDir . '/upload/*', $zipDir . '/upload/');
             }
-
-            CLI::output($zipName . ' created!');
         }
 
         ArchivatorHelper::createInSameFolder(Config::get('app', 'collection_folder'), [$moduleFullName], $moduleFullName . '.zip');

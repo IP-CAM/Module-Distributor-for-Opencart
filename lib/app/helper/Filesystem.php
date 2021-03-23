@@ -1,6 +1,8 @@
 <?php
 namespace App\Helper;
 
+use App\System\Config;
+
 Class FileSystem
 {
     public static function createDir($dir)
@@ -35,5 +37,10 @@ Class FileSystem
     public static function copyDir($from, $to)
     {
         CLI::input("cp -rf {$from} {$to}");
+    }
+
+    public static function projectPath()
+    {
+        return Config::get('app', 'project_path');
     }
 }
