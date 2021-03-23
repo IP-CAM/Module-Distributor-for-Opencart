@@ -24,7 +24,7 @@ Class Archivator
             ArchivatorHelper::createFromFolder(
                 $filesDir,
                 ['upload', 'install.xml', 'install.php', 'install.sql'],
-                FileSystem::projectPath() . '/' . $zipDir,
+                realpath($zipDir),
                 $zipName
             );
             ArchivatorHelper::removePathFromArchive($zipDir . $zipName, '*' . ObfuscatorRules::$postfix);

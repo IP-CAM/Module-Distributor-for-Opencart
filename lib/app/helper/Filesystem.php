@@ -38,9 +38,4 @@ Class FileSystem
     {
         CLI::input("cp -rf {$from} {$to}");
     }
-
-    public static function projectPath()
-    {
-        return Config::get('app', 'project_path');
-    }
 }
