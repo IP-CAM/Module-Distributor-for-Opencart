@@ -11,7 +11,7 @@ Class File
         $configApp = Config::app();
         $dirRoot = '';
         if ($version) {
-            $dirRoot = $configApp['base_path_to_project'] . $version . '/';
+            $dirRoot = $version . '/';
         }
         return file_get_contents($dirRoot . $file);
     }
@@ -21,7 +21,7 @@ Class File
         $configApp = Config::app();
         $dirRoot = '';
         if ($version) {
-            $dirRoot = $configApp['base_path_to_project'] . $version . '/';
+            $dirRoot = $version . '/';
         }
         return file_put_contents($dirRoot . $file, $content);
     }

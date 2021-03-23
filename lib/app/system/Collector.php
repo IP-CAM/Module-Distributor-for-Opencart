@@ -18,8 +18,8 @@ Class Collector
 {
     public static function run()
     {
-        $rules = self::getRules();
-        foreach ($rules['main_versions'] as $mainVersion) {
+        $rules = Rule::get(Rule::ARCHIVATOR);
+        foreach ($rules as $mainVersion => $rule) {
             foreach (FilesToDistribute::getModuleFiles() as $adminCatalogDir => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
@@ -28,41 +28,18 @@ Class Collector
                     }
                 }
             }
-        }
 
-        //Collect additional files
-        foreach ($rules['main_versions'] as $mainVersion) {
             self::copyAdditionalFiles($mainVersion);
-        }
-
-        //Collect install xml
-        foreach ($rules['main_versions'] as $mainVersion) {
             self::copyInstallXML($mainVersion);
-        }
-
-        //Collect install sql
-        foreach ($rules['main_versions'] as $mainVersion) {
             self::copyInstallSQL($mainVersion);
-        }
-
-        //Collect install php
-        foreach ($rules['main_versions'] as $mainVersion) {
             self::copyInstallPHP($mainVersion);
         }
     }
 
-    public static function getRules()
-    {
-        return Rule::get(Rule::COLLECTOR);
-    }
-
     private static function copyInstallXML($mainVersion)
     {
-        $rules = self::getRules();
-
-        $baseDir = Config::get('app', 'base_path_to_project');
-        $fileFrom = $baseDir . $mainVersion . '/install.xml';
-        $fileTo = $baseDir . $rules['folder'] . $mainVersion . '/install.xml';
+        $fileFrom = $mainVersion . '/install.xml';
+        $fileTo = Config::get('app', 'collection_folder') . $mainVersion . '/install.xml';
 
         FileSystem::copyFile($fileFrom, $fileTo);
 
@@ -71,13 +48,9 @@ Class Collector
 
     private static function copyInstallSQL($mainVersion)
     {
-        $rules = self::getRules();
-
         $distributorVersion = InstallSQL::getInstallSQLDistributor($mainVersion);
-
-        $baseDir = Config::get('app', 'base_path_to_project');
-        $fileFrom = $baseDir . $distributorVersion . '/install.sql';
-        $fileTo = $baseDir . $rules['folder'] . $mainVersion . '/install.sql';
+        $fileFrom = $distributorVersion . '/install.sql';
+        $fileTo = Config::get('app', 'collection_folder') . $mainVersion . '/install.sql';
 
         FileSystem::copyFile($fileFrom, $fileTo);
 
@@ -86,13 +59,9 @@ Class Collector
 
     private static function copyInstallPHP($mainVersion)
     {
-        $rules = self::getRules();
-
         $distributorVersion = InstallPHP::getInstallPHPDistributor($mainVersion);
-
-        $baseDir = Config::get('app', 'base_path_to_project');
-        $fileFrom = $baseDir . $distributorVersion . '/install.php';
-        $fileTo = $baseDir . $rules['folder'] . $mainVersion . '/install.php';
+        $fileFrom = $distributorVersion . '/install.php';
+        $fileTo = Config::get('app', 'collection_folder') . $mainVersion . '/install.php';
 
         FileSystem::copyFile($fileFrom, $fileTo);
 
@@ -101,15 +70,12 @@ Class Collector
 
     private static function copyModuleFiles($mainVersion, $adminCatalogDir, $mvcDir, $file)
     {
-        $rules = self::getRules();
-
         $structureDirFileToCopy = Structure::getPath($mainVersion, $adminCatalogDir, $mvcDir);
-        $baseDir = Config::get('app', 'base_path_to_project');
 
-        $fileToCopy = $baseDir . $mainVersion . '/' . $structureDirFileToCopy . $file;
+        $fileToCopy = $mainVersion . '/' . $structureDirFileToCopy . $file;
 
-        $collectorFolder = $rules['folder'];
-        $newFile = $baseDir . $collectorFolder . $mainVersion . '/upload/' . $structureDirFileToCopy . $file;
+        $collectorFolder = Config::get('app', 'collection_folder');
+        $newFile = $collectorFolder . $mainVersion . '/upload/' . $structureDirFileToCopy . $file;
 
         FileSystem::createDirByFile($newFile);
         FileSystem::copyFile($fileToCopy, $newFile);
@@ -122,20 +88,18 @@ Class Collector
     private static function copyAdditionalFiles($mainVersion)
     {
         $additionalFiles = IntegratorAdditionalFiles::getRules();
-        $collectorRules = static::getRules();
 
         if ($additionalFiles && isset($additionalFiles[IntegratorAdditionalFiles::getKeyRulesByVersion($mainVersion)])) {
 
-            $basePath = Config::get('app', 'base_path_to_project');
             foreach ($additionalFiles[IntegratorAdditionalFiles::getKeyRulesByVersion($mainVersion)] as $rules) {
                 $distributeVersion = $rules[0];
                 $fileFromTo = (gettype($rules[1]) == 'array') ? $rules[1] : [$rules[1], $rules[1]];
                 $replaceRules = $rules[2];
 
-                $distributeFilePath = $basePath . $distributeVersion . '/' . $fileFromTo[0];
+                $distributeFilePath = $distributeVersion . '/' . $fileFromTo[0];
 
-                $collectorFolder = $collectorRules['folder'];
-                $integrationFilePath = $basePath . $collectorFolder . $mainVersion . '/upload/' . $fileFromTo[1];
+                $collectorFolder = Config::get('app', 'collection_folder');
+                $integrationFilePath = $collectorFolder . $mainVersion . '/upload/' . $fileFromTo[1];
 
                 FileSystem::createDirByFile($integrationFilePath);
                 FileSystem::copyFile($distributeFilePath, $integrationFilePath);

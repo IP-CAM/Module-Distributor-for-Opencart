@@ -14,17 +14,16 @@ Class Obfuscator
     {
         $obfuscatorHelper = new ObfuscatorHelper();
 
-        $collectorRules = Collector::getRules();
+        $archivatorRules = Rule::get(Rule::ARCHIVATOR);
         $obfuscatorRules = ObfuscatorHandler::getRules();
 
         if ($obfuscatorRules) {
-            foreach ($collectorRules['main_versions'] as $mainVersion) {
+            foreach ($archivatorRules as $mainVersion => $archivatorRule) {
                 $obfuscatorKey = ObfuscatorHandler::getKeyRulesByVersion($mainVersion);
                 foreach ($obfuscatorRules[$obfuscatorKey] as $file) {
-                    $baseDir = Config::get('app', 'base_path_to_project');
-                    $collectorFolder = $collectorRules['folder'];
+                    $collectorFolder = $archivatorRules['folder'];
 
-                    $fileToObfuscate = $baseDir . $collectorFolder . $mainVersion . '/upload/' . $file;
+                    $fileToObfuscate = $collectorFolder . $mainVersion . '/upload/' . $file;
 
                     if (File::isExists($fileToObfuscate)) {
                         FileSystem::copyFile($fileToObfuscate, $fileToObfuscate . ObfuscatorHandler::$postfix);

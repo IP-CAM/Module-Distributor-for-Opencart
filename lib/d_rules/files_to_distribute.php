@@ -8,46 +8,46 @@ return [
     'module' => [
         'admin' => [
             'controller' => [
-                'same_category_products.php',
+                'awesome.php',
             ],
             'view' => [
-                'same_category_products',
+                'awesome', //Without format
             ],
             'css' => [
-                'same_category_products.css'
+                'awesome.css'
             ],
             'js' => [
-                'same_category_products.js'
+                'awesome.js'
             ],
             'language_ru' => [
-                'same_category_products.php',
+                'awesome.php',
             ],
             'language_en' => [
-                'same_category_products.php',
+                'awesome.php',
             ]
         ],
 
         'catalog' => [
             'controller' => [
-                'same_category_products.php',
+                'awesome.php',
             ],
             'model' => [
-                'same_category_products.php',
+                'awesome.php',
             ],
             'view' => [
-                'same_category_products',
+                'awesome', //Without format
             ],
             'css' => [
-                'same_category_products.css'
+                'awesome.css'
             ],
             'js' => [
-                'same_category_products.js'
+                'awesome.js'
             ],
             'language_ru' => [
-                'same_category_products.php',
+                'awesome.php',
             ],
             'language_en' => [
-                'same_category_products.php',
+                'awesome.php',
             ],
         ]
     ],
@@ -55,16 +55,16 @@ return [
     'oc_modification' => [
         '2010:2200' => [
             [
-                //Distribute version
+                //Distribute from version
                 '2010',
 
-                //File from -> to string or array ['from' => 'to']
+                //File
                 'admin/controller/catalog/category.php',
 
                 //Replace rules [['search', 'replace']]
                 [
                     [
-                        'model', 'database'
+                        'search', 'replace'
                     ]
                 ]
             ]
@@ -74,7 +74,7 @@ return [
     'additional_files' => [
         'all' => [
             [
-                //Distribute version
+                //Distribute from version
                 '2010',
 
                 //File from -> to string or array ['from' => 'to']
@@ -83,7 +83,7 @@ return [
                 //Replace rules [['search', 'replace']]
                 [
                     [
-                        'model', 'database'
+                        'search', 'replace'
                     ]
                 ]
             ]

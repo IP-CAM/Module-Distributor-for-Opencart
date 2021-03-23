@@ -17,14 +17,13 @@ Class IntegratorAdditionalFiles extends Integrator
         $additionalFiles = static::getRules();
         if ($additionalFiles && isset($additionalFiles[static::getKeyRulesByVersion($integrationVersion)])) {
 
-            $basePath = Config::get('app', 'base_path_to_project');
             foreach ($additionalFiles[static::getKeyRulesByVersion($integrationVersion)] as $rules) {
                 $distributeVersion = $rules[0];
                 $fileFromTo = (gettype($rules[1]) == 'array') ? $rules[1] : [$rules[1], $rules[1]];
                 $replaceRules = $rules[2];
 
-                $distributeFilePath = $basePath . $distributeVersion . '/' . $fileFromTo[0];
-                $integrationFilePath = $basePath . $integrationVersion . '/' . $fileFromTo[1];
+                $distributeFilePath = $distributeVersion . '/' . $fileFromTo[0];
+                $integrationFilePath = $integrationVersion . '/' . $fileFromTo[1];
 
                 FileSystem::createDirByFile($integrationFilePath);
                 FileSystem::copyFile($distributeFilePath, $integrationFilePath);

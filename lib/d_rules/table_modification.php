@@ -1,7 +1,7 @@
 <?php
-$name = 'digitalElephantFilter';
-$author = 'denis.kisel92@gmail.com';
-$version = date('d-m-Y') . ' v:1.1';
+$name = \App\System\Config::get('app', 'module_name');
+$author = \App\System\Config::get('app', 'author');
+$version = \App\System\Config::get('app', 'version');;
 $date_added = date('Y-m-d H:i:s');
 
 return [

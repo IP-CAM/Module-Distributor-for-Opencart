@@ -15,6 +15,6 @@ return[
     ],
     '3000' => [
         'name' => '3.x',
-        'is_upload_in_archive' => false
+        'is_upload_in_archive' => true
     ],
 ];

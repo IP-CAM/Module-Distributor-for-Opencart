@@ -36,10 +36,10 @@ Class Distributor
         $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDir);
 
         $structureDirFileToCopy = Structure::getPath($distributionVersion, $adminCatalogDir, $mvcDir);
-        $fileToCopy = Config::get('app', 'base_path_to_project') . $distributionVersion . '/' . $structureDirFileToCopy . $file;
+        $fileToCopy = $distributionVersion . '/' . $structureDirFileToCopy . $file;
 
         $structureDirNewFile = Structure::getPath($integrationVersion, $adminCatalogDir, $mvcDir);
-        $newFile = Config::get('app', 'base_path_to_project') . $integrationVersion . '/' . $structureDirNewFile . $file;
+        $newFile = $integrationVersion . '/' . $structureDirNewFile . $file;
 
         FileSystem::createDirByFile($newFile);
         FileSystem::copyFile($fileToCopy, $newFile);

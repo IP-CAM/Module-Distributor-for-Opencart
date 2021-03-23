@@ -13,7 +13,13 @@ Class InstallXML
     public static function run()
     {
         $rules = Rule::get(Rule::INSTALL_XML);
-        $xmlTemplate = $rules['template'];
+        $xmlTemplate = self::template();
+        $xmlTemplate = str_replace('{name}', Config::get('app', 'module_name'), $xmlTemplate);
+        $xmlTemplate = str_replace('{author}', Config::get('app', 'author'), $xmlTemplate);
+        $xmlTemplate = str_replace('{site}', Config::get('app', 'site'), $xmlTemplate);
+        $xmlTemplate = str_replace('{version}', Config::get('app', 'version'), $xmlTemplate);
+        $xmlTemplate = str_replace('{code}', Config::get('app', 'modification_code'), $xmlTemplate);
+
         $allVersions = Config::get('app', 'integration_versions');
         if (!empty($rules['modifications'])) {
             foreach ($rules['modifications'] as $rangeVersionsString => $modification) {
@@ -65,5 +71,24 @@ Class InstallXML
 
             unset($db);
         }
+    }
+
+    protected static function template()
+    {
+        return <<<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>
+        <![CDATA[ {name} ]]>
+    </name>
+    <version> {version} </version>
+    <link>{site}</link>
+    <author>
+        <![CDATA[<b>{email}</b>]]>
+    </author>
+    <code> {code} </code>
+    {modifications}
+</modification>
+EOF;
     }
 }

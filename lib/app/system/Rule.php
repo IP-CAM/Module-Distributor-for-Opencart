@@ -7,7 +7,6 @@ namespace App\system;
 class Rule
 {
     const ARCHIVATOR = 'archivator';
-    const COLLECTOR = 'collector';
     const CONTROLLER = 'controller';
     const COPY = 'copy';
     const FILES_TO_DISTRIBUTE = 'files_to_distribute';
@@ -28,7 +27,7 @@ class Rule
             throw new \Exception('Rule::get() Not Available Name!');
         }
 
-        $path = __DIR__ . "/../../../d_rules/{$name}.php";
+        $path = "d_rules/{$name}.php";
         if (!file_exists($path)) {
             throw new \Exception("Rule::get() [d_rules/{$name}.php] file is not exists!");
         }
@@ -40,7 +39,6 @@ class Rule
     {
         return [
             self::ARCHIVATOR,
-            self::COLLECTOR,
             self::CONTROLLER,
             self::COPY,
             self::FILES_TO_DISTRIBUTE,

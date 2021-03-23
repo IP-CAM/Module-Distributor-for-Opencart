@@ -18,7 +18,7 @@ Class Logger
         $date = date('Y-m-d H:i:s');
 
         file_put_contents(
-            Config::get('app', 'base_path_to_project') . 'distributor/logs/' . $this->file,
+            'distributor/logs/' . $this->file,
             $date . "\n" . print_r($log, true)
         );
     }
