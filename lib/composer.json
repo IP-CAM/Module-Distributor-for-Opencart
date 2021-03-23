@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    },
+    "classmap": [
+      "app/"
+    ]
+  },
+  "require-dev": {
+    "vendor/phpunit/phpunit": "9.*"
+  }
+}
