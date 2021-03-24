@@ -61,12 +61,13 @@ return [
                 //File from -> to string or array ['from' => 'to']
                 'system/library/product.php',
 
+                //Optional!
                 //Replace rules [['search', 'replace']]
-                [
-                    [
-                        'search', 'replace'
-                    ]
-                ]
+//                [
+//                    [
+//                        'search', 'replace'
+//                    ]
+//                ]
             ]
         ],
     ],

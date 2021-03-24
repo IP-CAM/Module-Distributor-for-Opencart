@@ -18,7 +18,7 @@ Class IntegratorAdditionalFiles extends Integrator
             foreach ($additionalFiles[static::getKeyRulesByVersion($integrationVersion)] as $rules) {
                 $distributeVersion = $rules[0];
                 $fileFromTo = (gettype($rules[1]) == 'array') ? $rules[1] : [$rules[1], $rules[1]];
-                $replaceRules = $rules[2];
+                $replaceRules = $rules[2] ?? null;
 
                 $distributeFilePath = $distributeVersion . '/' . $fileFromTo[0];
                 $integrationFilePath = $integrationVersion . '/' . $fileFromTo[1];
