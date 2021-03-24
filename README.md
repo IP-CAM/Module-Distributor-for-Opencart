@@ -33,6 +33,9 @@ Then you need to edit some rules for specific your module:
 First rules what should edit its `d_rules/files_to_distribute.php`   
 Need to set all relative files pathes of module
 
+### Set rules of copying files
+Configure rule `d_rules/copy.php`. 
+
 
 ### Base integration
 Edit rules: 
@@ -74,7 +77,7 @@ Config `install.sql` by analogy.
 Configure `d_rules/archivator.php` to final collector your module
 
 
-### Obfuscate some files(for safe licence)
+### Obfuscate some files(for safe licence)[optional]
 Configure `d_rules/obfuscator.php`
 
 
