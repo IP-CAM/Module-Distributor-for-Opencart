@@ -27,7 +27,7 @@ return [
         'date_added' => $date_added,
     ],
 
-    '3000:3020' => [
+    '3000:3099' => [
         'extension_install_id' => 0,
         'name' => $name,
         'code' => $name,

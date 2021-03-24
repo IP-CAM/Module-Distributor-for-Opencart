@@ -10,6 +10,9 @@ return [
             'controller' => [
                 'awesome.php',
             ],
+            'model' => [
+                //'awesome.php',
+            ],
             'view' => [
                 'awesome', //Without format
             ],

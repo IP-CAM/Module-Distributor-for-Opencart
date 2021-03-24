@@ -8,7 +8,7 @@
 return [
     '2010:2200' => [],
 
-    '2300:3020' => [
+    '2300:3099' => [
         'admin' => [
             [
                 'ModelModule{class_name}',

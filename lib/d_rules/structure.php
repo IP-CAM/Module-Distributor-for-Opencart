@@ -44,7 +44,7 @@ return [
         ]
     ],
 
-    '2300:3020' => [
+    '2300:3099' => [
         'admin' => [
             'controller' => 'admin/controller/extension/module/',
             'model' => 'admin/model/extension/module/',

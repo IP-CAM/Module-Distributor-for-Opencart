@@ -22,7 +22,7 @@ return [
         </operation>
   </file>
 EOF,
-    '3000:3020' => <<<EOF
+    '3000:3099' => <<<EOF
     <file path="catalog/view/theme/*/template/product/category.twig">
       <operation>
          <search trim="true"><![CDATA[{{ results }}]]></search>
