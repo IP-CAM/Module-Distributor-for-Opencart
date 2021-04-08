@@ -18,7 +18,7 @@ Class Logger
         $date = date('Y-m-d H:i:s');
 
         file_put_contents(
-            'distributor/logs/' . $this->file,
+            Config::app()['collection_folder'] . $this->file,
             $date . "\n" . print_r($log, true)
         );
     }

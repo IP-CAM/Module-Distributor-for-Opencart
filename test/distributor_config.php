@@ -3,7 +3,7 @@
 return [
     'module_name' => 'awesome',
     'module_prefix' => '', // Use for prefix of archive
-    'integration_versions' => ['2010', '2200', '2302'],
+    'integration_versions' => ['2010', '2200', '2302', '3000'],
     'collection_folder' => 'dist/',
 
     'author' => 'Your email',
@@ -15,7 +15,7 @@ return [
         'hostname' => 'localhost',
         'username' => 'homestead',
         'password'  => 'secret',
-        'database_prefix'  => 'ocawersome_',
+        'database_prefix'  => 'ocawesome_',
         'table_prefix' => 'oc_'
     ]
 ];

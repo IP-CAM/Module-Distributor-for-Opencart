@@ -87,15 +87,14 @@ $ cd proj_dir //Without version, just in root
 $ oc-distribute
 ```
 
+## Lifecycle
+1. Module files copy from base version to another versions.  
+First handler is `Distributor` class, which copy files with replace content by rules.  
+Second handler is `AdditionalFiles` class, which copy additional files with replace content by `files_to_distribute[additional_files]` rules.  
+Second handler is `InstallXML` class, which create install.xml file by `install_xml` rules and automatically apply modifications.  
+1. Module collected to dir specify in `distributor_config[collection_folder]` config, by default to `dist`
+1. Module's files obfuscated by `obfuscator` rules. (Optional)
+1. Create `zip` archive by `archivator` rules.
+
 ## License
 The MIT License (MIT)
-
-## Donation
-If this project help you reduce time to develop, you can give me a cup of coffee :)
-Also you can support project if you want to use framework with new versions of Opencart in the future!
-
-WebMoney:
-USD: Z379807461542
-RUB: R540812684383
-
-YandexMoney(YooMoney): denis.kisel92@gmail.com

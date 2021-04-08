@@ -11,8 +11,8 @@ return [
     '2200' => [
         'admin' => [
             [
-                '$this->load->view(\'module/{module_name}.tpl\', $data)',
-                '$this->load->view(\'module/{module_name}\', $data)'
+                '.tpl',
+                ''
             ],
         ],
 

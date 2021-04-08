@@ -1,7 +1,7 @@
 <?php
 
 return [
-    '2101:2302' => <<<EOF
+    '2010:2302' => <<<EOF
     <file path="catalog/view/theme/*/template/product/category.tpl">
         <operation>
           <search trim="true">

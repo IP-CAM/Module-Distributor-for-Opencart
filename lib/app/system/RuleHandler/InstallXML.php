@@ -21,8 +21,8 @@ Class InstallXML
         $xmlTemplate = str_replace('{code}', Config::get('app', 'modification_code'), $xmlTemplate);
 
         $allVersions = Config::get('app', 'integration_versions');
-        if (!empty($rules['modifications'])) {
-            foreach ($rules['modifications'] as $rangeVersionsString => $modification) {
+        if (!empty($rules)) {
+            foreach ($rules as $rangeVersionsString => $modification) {
                 foreach ($allVersions as $version) {
                     if (Interpretation::inRange($rangeVersionsString, $version)) {
                         $xmlContent = str_replace('{modifications}', $modification, $xmlTemplate);
@@ -42,7 +42,6 @@ Class InstallXML
         foreach ($integrationsVersions as $integrationVersion) {
 
             $xml = File::read('install.xml', $integrationVersion);
-
             if (empty($xml)) {
                 continue;
             }

@@ -8,7 +8,6 @@ Class File
 {
     public static function read($file, $version = false)
     {
-        $configApp = Config::app();
         $dirRoot = '';
         if ($version) {
             $dirRoot = $version . '/';
@@ -18,7 +17,6 @@ Class File
 
     public static function write($file, $content, $version = false)
     {
-        $configApp = Config::app();
         $dirRoot = '';
         if ($version) {
             $dirRoot = $version . '/';
@@ -37,7 +35,12 @@ Class File
             self::replaceShortCodes($search);
             self::replaceShortCodes($replace);
 
-            $newContent = str_replace($search, $replace, $content);
+            if (strpos($search, '[regex]') === false) {
+                $newContent = str_replace($search, $replace, $content);
+            } else {
+                $regex = str_replace('[regex]', '', $search);
+                $newContent = preg_replace("/$regex/U", $replace, $content);
+            }
 
             self::oneLineToMultiLines($newContent);
 
