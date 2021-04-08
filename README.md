@@ -45,13 +45,38 @@ Edit rules:
   
 For example: you need to integrate base code of controller file from 2000 version to 3000 version. You can replace some code in `d_rules/controller.php` file:
 
+#### Replace format
 ```
+'range_versions' => [
+    'admin' => [
+        ['search', 'replace'],
+        ...
+    ],
+    'catalog' => [
+        ['search', 'replace'],
+        ...
+    ]
+]
+
+#Example
 '3000:3020' => [                
     ...
     'catalog' => [
         [
             'ControllerModule{class_name}',
             'ControllerExtensionModule{class_name}'
+        ],
+    ...
+]
+
+#Also available serach by regex 
+#just start search with "[regex]"
+'3000:3020' => [                
+    ...
+    'catalog' => [
+        [
+            '[regex]Contrller(.*)Module',
+            'Controller${1}Module'
         ],
     ...
 ]
