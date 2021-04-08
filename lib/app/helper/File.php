@@ -39,7 +39,7 @@ Class File
                 $newContent = str_replace($search, $replace, $content);
             } else {
                 $regex = str_replace('[regex]', '', $search);
-                $newContent = preg_replace("/$regex/U", $replace, $content);
+                $newContent = preg_replace("/$regex/sU", $replace, $content);
             }
 
             self::oneLineToMultiLines($newContent);

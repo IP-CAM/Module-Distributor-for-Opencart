@@ -69,8 +69,9 @@ For example: you need to integrate base code of controller file from 2000 versio
     ...
 ]
 
-#Also available serach by regex 
+#Also available serach by regex
 #just start search with "[regex]"
+#Setted modifies: sU
 '3000:3020' => [                
     ...
     'catalog' => [
