@@ -59,8 +59,7 @@ Class Distributor
         $className = 'App\System\RuleHandler\Integrator' . ucfirst($mvcDir);
         if (class_exists($className)) {
             $className::integrateToVersion($integrationVersion, $adminCatalogDir, $newFile);
+            CLI::output("({$integrationVersion}) " . pathinfo($newFile, PATHINFO_FILENAME) . " integrated!");
         }
-
-        CLI::output("({$integrationVersion}) " . pathinfo($newFile, PATHINFO_FILENAME) . " integrated!");
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\System\RuleHandler;
 
+use App\Helper\CLI;
 use App\Helper\Interpretation;
 use App\Helper\File;
 
@@ -30,6 +31,7 @@ Class Integrator
         if (!empty($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDir])) {
             foreach ($rules[static::getKeyRulesByVersion($integrationVersion)][$adminCatalogDir] as $rule) {
                 File::replaceText($rule[0], $rule[1], $file);
+                CLI::output("{$file} replaced: {$rule[0]} => $rule[1]");
             }
         }
     }
