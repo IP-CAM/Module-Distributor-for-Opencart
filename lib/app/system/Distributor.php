@@ -22,7 +22,6 @@ Class Distributor
             foreach (FilesToDistribute::getModuleFiles() as $adminCatalogDir => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
-                        Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir,$file);
                         $newFile = self::copyFile($integrationVersion, $adminCatalogDir, $mvcDir, $file);
                         self::integrate($integrationVersion, $adminCatalogDir, $mvcDir, $newFile);
                     }
@@ -36,15 +35,18 @@ Class Distributor
         $distributionVersion = Copy::getDistributeVersion($integrationVersion, $mvcDir);
 
         $structureDirFileToCopy = Structure::getPath($distributionVersion, $adminCatalogDir, $mvcDir);
+
         $fileToCopy = $distributionVersion . '/' . $structureDirFileToCopy . $file;
+        $fileToCopy .= Format::makeFormatIfNotExists($distributionVersion, $mvcDir, $file);
 
         $structureDirNewFile = Structure::getPath($integrationVersion, $adminCatalogDir, $mvcDir);
         $newFile = $integrationVersion . '/' . $structureDirNewFile . $file;
+        $newFile .= Format::makeFormatIfNotExists($integrationVersion, $mvcDir, $file);
 
         FileSystem::createDirByFile($newFile);
         FileSystem::copyFile($fileToCopy, $newFile);
 
-        CLI::output("({$integrationVersion}) $adminCatalogDir $mvcDir $file created!");
+        CLI::output("({$integrationVersion}) {$fileToCopy} => {$newFile} copied!");
 
         return $newFile;
     }

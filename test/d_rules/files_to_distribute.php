@@ -8,47 +8,47 @@ return [
     'module' => [
         'admin' => [
             'controller' => [
-                'awesome.php',
+//                'awesome.php',
             ],
             'view' => [
                 'awesome', //Without format
             ],
             'css' => [
-                'awesome.css'
+//                'awesome.css'
             ],
             'js' => [
-                'awesome.js'
+//                'awesome.js'
             ],
             'language_ru' => [
-                'awesome.php',
+//                'awesome.php',
             ],
             'language_en' => [
-                'awesome.php',
+//                'awesome.php',
             ]
         ],
 
         'catalog' => [
-            'controller' => [
-                'awesome.php',
-            ],
-            'model' => [
-                'awesome.php',
-            ],
-            'view' => [
-                'awesome', //Without format
-            ],
-            'css' => [
-                'awesome.css'
-            ],
-            'js' => [
-                'awesome.js'
-            ],
-            'language_ru' => [
-                'awesome.php',
-            ],
-            'language_en' => [
-                'awesome.php',
-            ],
+//            'controller' => [
+//                'awesome.php',
+//            ],
+//            'model' => [
+//                'awesome.php',
+//            ],
+//            'view' => [
+//                'awesome', //Without format
+//            ],
+//            'css' => [
+//                'awesome.css'
+//            ],
+//            'js' => [
+//                'awesome.js'
+//            ],
+//            'language_ru' => [
+//                'awesome.php',
+//            ],
+//            'language_en' => [
+//                'awesome.php',
+//            ],
         ]
     ],
 

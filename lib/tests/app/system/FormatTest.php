@@ -9,7 +9,7 @@ class FormatTest extends TestCase
      */
     public function testAddFormatToFileIfNotExists($integrationVersion, $mvcDir, $file, $expected)
     {
-        $this->assertSame($expected, Format::addFormatToFileIfNotExists($integrationVersion, $mvcDir, $file));
+        $this->assertSame($expected, Format::makeFormatIfNotExists($integrationVersion, $mvcDir, $file));
     }
 
     public function additionalProvider()

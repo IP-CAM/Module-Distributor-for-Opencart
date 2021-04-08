@@ -23,7 +23,7 @@ Class Collector
             foreach (FilesToDistribute::getModuleFiles() as $adminCatalogDir => $adminCatalogDirs) {
                 foreach ($adminCatalogDirs as $mvcDir => $files) {
                     foreach ($files as $file) {
-                        Format::addFormatToFileIfNotExists($mainVersion, $mvcDir, $file);
+                        $file = $file . Format::makeFormatIfNotExists($mainVersion, $mvcDir, $file);
                         self::copyModuleFiles($mainVersion, $adminCatalogDir, $mvcDir, $file);
                     }
                 }

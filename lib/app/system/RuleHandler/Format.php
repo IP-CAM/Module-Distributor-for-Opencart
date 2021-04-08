@@ -6,7 +6,7 @@ use App\system\Rule;
 
 Class Format
 {
-    public static function addFormatToFileIfNotExists($integrationVersion, $mvcDir, &$file)
+    public static function makeFormatIfNotExists($integrationVersion, $mvcDir, $file)
     {
         $currentFormat = pathinfo($file,PATHINFO_EXTENSION);
 
@@ -15,12 +15,11 @@ Class Format
             foreach ($rules[$mvcDir] as $versions => $format) {
                 $arr = Interpretation::rangeToArray($versions);
                 if (in_array($integrationVersion, $arr)) {
-                    $file .= $format;
-                    break;
+                    return "{$format}";
                 }
             }
         }
 
-        return $file;
+        return null;
     }
 }
